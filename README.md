@@ -1,3 +1,5 @@
+# Flappy Bird
+
 # HTML5 CSS-based Game
 
 This game project has the following:
@@ -13,5 +15,5 @@ This game project has the following:
 ```
 npm install
 bower install
-grunt server
+grunt serve
 ```
