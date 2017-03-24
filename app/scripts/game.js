@@ -5,20 +5,25 @@
  */
 
 class Game {
-	/**
-	 * Some shared constants.
-	 */
-
 	constructor (el) {
+		// el = .GameCanvas
 		this.el = el;
 		this.player = new Player(this.el.find('.Player'), this);
+		this.background = new Background(this.el.find('.Background'));
 		this.isPlaying = false;
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 
-		this.WORLD_WIDTH = 102.4;
-		this.WORLD_HEIGHT = 57.6;
+		this.WORLD_WIDTH = 32;
+		this.WORLD_HEIGHT = 48;
+
+		this.img = new Image();
+		this.img.onload = function() {
+			loadAllSprites(this);
+		};
+		this.img.src = '../images/sheet.png';
+		this.resizeGame();
 	}
 
 	static get WORLD_WIDTH() { return WORLD_WIDTH; }
@@ -35,7 +40,7 @@ class Game {
 
 		// Calculate how long since last frame in seconds.
 		var now = +new Date() / 1000,
-				delta = now - this.lastFrame;
+			delta = now - this.lastFrame;
 		this.lastFrame = now;
 
 		// Update game entities.
@@ -80,6 +85,12 @@ class Game {
 						that.start();
 					});
 	}
+
+	resizeGame () {
+		var fontSize = Math.min(
+			window.innerWidth / 32,
+			window.innerHeight / 48
+		);
+		this.el.css('fontSize', fontSize + 'px');
+	};
 }
-
-

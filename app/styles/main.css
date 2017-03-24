@@ -5,6 +5,34 @@
 	width: 5em;
 	height: 5em;
 	background: blue;
+	transform: translateZ(0) translate(8em, 8em);
+}
+
+.Background {
+	position: absolute;
+	width: 32em;
+	height: 26.4em;
+	background: url(../images/background.png) no-repeat;
+	transform: translateZ(0) translateY(15em);
+	background-size: 100% 100%;
+}
+
+.Foreground1 {
+	position: absolute;
+	width: 32em;
+	height: 13em;
+	background: url(../images/foreground.png) no-repeat;
+	transform: translateZ(0) translateY(38em);
+	background-size: 100% 100%;
+}
+
+.Foreground2 {
+	position: absolute;
+	width: 32em;
+	height: 13em;
+	background: url(../images/foreground.png) no-repeat;
+	transform: translateZ(0) translate(32em, 38em);
+	background-size: 100% 100%;
 }
 
 .Scoreboard {
@@ -19,6 +47,7 @@
 	text-align: center;
 	-webkit-transform: translate(0, -40em);
 	-webkit-transition: -webkit-transform 0.5s;
+	transform: translate(0, -40em);
 }
 
 /**
@@ -36,29 +65,33 @@
 	background: none;
 	cursor: pointer;
 }
+
 .Scoreboard-restartText {
-font-family: 'Comic Sans MS', serif;
-font-size: 2.4em;
-color: white;
+	font-family: 'Comic Sans MS', serif;
+	font-size: 2.4em;
+	color: white;
 }
+
 body {
-background: black;
+	background: black;
 }
+
 .browsehappy {
-margin: 0.2em 0;
-background: ?#?ccc?;
-color: #000;
-padding: 0.2em 0;
+	margin: 0.2em 0;
+	/*background: ?#?ccc?;
+	color: #000;
+	padding: 0.2em 0;*/
 }
+
 .GameCanvas {
-font-size: 10px;
-position: absolute;
-left: 50%;
-top: 50%;
-width: 102.4em;
-height: 57.6em;
-margin-left: -51.2em;
-margin-top: -28.8em;
-overflow: hidden;
-background: red;
+	font-size: 10px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 32em;
+	height: 48em;
+	margin-left: -16em;
+	margin-top: -24em;
+	overflow: hidden;
+	background: #70c5cf;
 }

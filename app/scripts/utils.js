@@ -14,3 +14,11 @@ if (!window.requestAnimationFrame) {
             };
     })();
 }
+
+$(window).resize(function() {
+	var fontSize = Math.min(
+        window.innerWidth / 32,
+        window.innerHeight / 48
+    );
+    $('.GameCanvas').css('fontSize', fontSize + 'px');
+});

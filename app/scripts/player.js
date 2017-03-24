@@ -3,15 +3,18 @@
 var SPEED = 30; // * 10 pixels per second
 var WIDTH = 5;
 var HEIGHT = 5;
-var INITIAL_POSITION_X = 30;
-var INITIAL_POSITION_Y = 25;
+var INITIAL_POSITION_X = 8;
+var INITIAL_POSITION_Y = 8;
 
 class Player {
 	
 	constructor (el, game) {
 		this.el = el;
 		this.game = game;
-		this.pos = { x: 0, y: 0 };
+		this.pos = { 
+			x: INITIAL_POSITION_X, 
+			y: INITIAL_POSITION_Y 
+		};
 		this.controls = new Controls();
 	}
 
