@@ -17,6 +17,13 @@ class Game {
 			this.el.find('.Foreground1'),
 			this.el.find('.Foreground2')
 		);
+
+		this.splashscreen = new SplashScreen(
+			this.el.find('.Splash')
+		);
+		this.splashscreen.show();
+		
+
 		this.isPlaying = false;
 
 		this.states = {
@@ -24,8 +31,8 @@ class Game {
 			game: 1,
 			score: 2
 		};
-
 		this.currentState = this.states.splash;
+
 		this.frames = 0;
 
 		// Cache a bound onFrame since we need it each frame.
@@ -87,6 +94,9 @@ class Game {
 	reset () {
 		this.player.reset();
 		this.foreground.reset();
+		this.background.reset();
+		this.splashscreen.show();
+		this.currentState = this.states.splash;
 	}
 
 	/**
@@ -94,6 +104,7 @@ class Game {
 	 */
 	gameover () {
 		this.isPlaying = false;
+		this.currentState = this.states.score;
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;
@@ -104,6 +115,12 @@ class Game {
 						scoreboardEl.removeClass('is-visible');
 						that.start();
 					});
+	}
+
+	play () {
+		this.isPlaying = true;
+		this.currentState = this.states.game;
+		this.splashscreen.hide();
 	}
 
 	resizeGame () {

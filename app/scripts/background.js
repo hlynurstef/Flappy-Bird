@@ -5,22 +5,22 @@ class Background {
 		this.el2 = el2;
 		this.pos1 = {
 			x: 0,
-			y: 15
+			y: 24
 		};
 		this.pos2 = {
 			x: 31.9,
-			y: 15
+			y: 24
 		};
 	}
 
 	reset() {
 		this.pos1 = {
 			x: 0,
-			y: 15
+			y: 24
 		};
 		this.pos2 = {
 			x: 31.9,
-			y: 15
+			y: 24
 		};
 	}
 

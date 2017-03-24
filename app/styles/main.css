@@ -14,7 +14,7 @@
 	width: 32em;
 	height: 26.4em;
 	background: url(../images/background.png) no-repeat;
-	transform: translateZ(0) translate(0em, 15em);
+	transform: translateZ(0) translate(0em, 24em);
 	background-size: 100% 100%;
 }
 
@@ -23,7 +23,7 @@
 	width: 32em;
 	height: 26.4em;
 	background: url(../images/background.png) no-repeat;
-	transform: translateZ(0) translate(32em, 15em);
+	transform: translateZ(0) translate(32em, 24em);
 	background-size: 100% 100%;
 }
 
@@ -35,6 +35,43 @@
 	
 	transform: translateZ(0) translate(0em, 38em);
 	background-size: 100% 100%;
+}
+
+.Splash {
+	width: 100%;
+	height: 100%;
+	margin-top: 48em;
+	-webkit-transform: translateZ(0) translate(0em, 0em);
+	-webkit-transition: -webkit-transform 0.5s;
+}
+
+.Splash.is-visible {
+	-webkit-transform: translateZ(0) translate(0em, -48em);
+	-webkit-transition: -webkit-transform 0.5s;
+}
+
+.SplashText {
+	position: absolute;
+	width: 16em;
+	height: 5em;
+	top: 50%;
+	left: 50%;
+	margin-left: -8em;
+	margin-top: -13em;
+	background: url(../images/getready.png) no-repeat;
+	background-size: 100%;
+}
+
+.SplashTap {
+	position: absolute;
+	width: 11em;
+	height: 11em;
+	top: 50%;
+	left: 50%;
+	margin-left: -5.5em;
+	margin-top: -5.5em;
+	background: url(../images/splash.png) no-repeat;
+	background-size: 100%;
 }
 
 .Foreground2 {
@@ -65,7 +102,6 @@
 * Reset transform to animate it into the correct spot on the screen.
 */
 .Scoreboard.is-visible {
-	
 	-webkit-transform: translateZ(0) translate(0, 40em);
 	-webkit-transition: -webkit-transform 0.5s;
 }
