@@ -19,11 +19,20 @@ class Game {
 		);
 		this.isPlaying = false;
 
+		this.states = {
+			splash: 0,
+			game: 1,
+			score: 2
+		};
+
+		this.currentState = this.states.splash;
+		this.frames = 0;
+
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 
 		this.WORLD_WIDTH = 32;
-		this.WORLD_HEIGHT = 48;
+		this.WORLD_HEIGHT = 38;
 
 		this.img = new Image();
 		this.img.onload = function() {
@@ -40,6 +49,7 @@ class Game {
 	 * entity to update itself.
 	 */
 	onFrame () {
+		this.frames++;
 		// Check if the game loop should stop.
 		if (!this.isPlaying) {
 			return;

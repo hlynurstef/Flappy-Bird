@@ -15,6 +15,21 @@ class Player {
 			x: INITIAL_POSITION_X, 
 			y: INITIAL_POSITION_Y 
 		};
+
+		this.sprites = [
+			'../images/bird1.png',
+			'../images/bird2.png',
+			'../images/bird3.png'
+		];
+
+		this.animation = [0,1,2,1];
+
+		this.frame = 0;
+		this.rotation = 0;
+		this.velocity = 0;
+		this.gravity = 0.25;
+		this.jumpSpeed = 4.6;
+
 		this.controls = new Controls();
 	}
 
@@ -42,8 +57,16 @@ class Player {
 
 		this.checkCollisionWithBounds();
 
+		var n = this.game.currentState === this.game.states.splash ? 10 : 15;
+		this.frame += this.game.frames % n === 0 ? 1 : 0;
+		this.frame %= this.animation.length;
+
+		var i = this.animation[this.frame];
+
 		// Update UI
+		this.el.css('background', 'url(' + this.sprites[i] + ') no-repeat');
 		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		this.el.css('background-size', '100% auto');
 	}
 
 	checkCollisionWithBounds () {
@@ -53,5 +76,9 @@ class Player {
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
 			return this.game.gameover();
 		}
+	}
+
+	jump () {
+		this.velocity = -this.jumpSpeed;
 	}
 }

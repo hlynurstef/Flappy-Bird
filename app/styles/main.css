@@ -2,10 +2,11 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 5em;
-	height: 5em;
-	background: blue;
+	width: 3em;
+	height: 2.2em;
+	background: url(../images/bird1.png) no-repeat;
 	transform: translateZ(0) translate(8em, 8em);
+	background-size: 100% auto;
 }
 
 .Background1 {
@@ -53,19 +54,20 @@
 	height: 30em;
 	width: 40em;
 	margin-left: -20em;
+	margin-top: -40em;
 	box-sizing: border-box;
 	background: purple;
 	text-align: center;
-	-webkit-transform: translate(0, -40em);
-	-webkit-transition: -webkit-transform 0.5s;
-	transform: translate(0, -40em);
+	-webkit-transform: none;
 }
 
 /**
 * Reset transform to animate it into the correct spot on the screen.
 */
 .Scoreboard.is-visible {
-	-webkit-transform: none;
+	
+	-webkit-transform: translateZ(0) translate(0, 40em);
+	-webkit-transition: -webkit-transform 0.5s;
 }
 
 .Scoreboard-restart {
