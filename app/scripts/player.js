@@ -1,10 +1,10 @@
 // All these constants are in em's, multiply by 10 pixels
 // for 1024x576px canvas.
-var SPEED = 30; // * 10 pixels per second
-var WIDTH = 5;
-var HEIGHT = 5;
-var INITIAL_POSITION_X = 8;
-var INITIAL_POSITION_Y = 8;
+const SPEED = 30; // * 10 pixels per second
+const WIDTH = 5;
+const HEIGHT = 5;
+const INITIAL_POSITION_X = 8;
+const INITIAL_POSITION_Y = 8;
 
 class Player {
 	

@@ -8,29 +8,40 @@
 	transform: translateZ(0) translate(8em, 8em);
 }
 
-.Background {
+.Background1 {
 	position: absolute;
 	width: 32em;
 	height: 26.4em;
 	background: url(../images/background.png) no-repeat;
-	transform: translateZ(0) translateY(15em);
+	transform: translateZ(0) translate(0em, 15em);
+	background-size: 100% 100%;
+}
+
+.Background2 {
+	position: absolute;
+	width: 32em;
+	height: 26.4em;
+	background: url(../images/background.png) no-repeat;
+	transform: translateZ(0) translate(32em, 15em);
 	background-size: 100% 100%;
 }
 
 .Foreground1 {
 	position: absolute;
 	width: 32em;
-	height: 13em;
+	height: 12em;
 	background: url(../images/foreground.png) no-repeat;
-	transform: translateZ(0) translateY(38em);
+	
+	transform: translateZ(0) translate(0em, 38em);
 	background-size: 100% 100%;
 }
 
 .Foreground2 {
 	position: absolute;
 	width: 32em;
-	height: 13em;
+	height: 12em;
 	background: url(../images/foreground.png) no-repeat;
+
 	transform: translateZ(0) translate(32em, 38em);
 	background-size: 100% 100%;
 }

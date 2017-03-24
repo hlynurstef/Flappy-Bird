@@ -9,7 +9,14 @@ class Game {
 		// el = .GameCanvas
 		this.el = el;
 		this.player = new Player(this.el.find('.Player'), this);
-		this.background = new Background(this.el.find('.Background'));
+		this.background = new Background(
+			this.el.find('.Background1'),
+			this.el.find('.Background2')
+		);
+		this.foreground = new Foreground(
+			this.el.find('.Foreground1'),
+			this.el.find('.Foreground2')
+		);
 		this.isPlaying = false;
 
 		// Cache a bound onFrame since we need it each frame.
@@ -45,6 +52,8 @@ class Game {
 
 		// Update game entities.
 		this.player.onFrame(delta);
+		this.foreground.onFrame(delta);
+		this.background.onFrame(delta);
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -67,6 +76,7 @@ class Game {
 	 */
 	reset () {
 		this.player.reset();
+		this.foreground.reset();
 	}
 
 	/**

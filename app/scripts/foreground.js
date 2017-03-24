@@ -1,26 +1,26 @@
-class Background {
+class Foreground {
 	constructor(el1, el2) {
-		this.speed = 1.6;
+		this.speed = 6.4;
 		this.el1 = el1;
 		this.el2 = el2;
 		this.pos1 = {
 			x: 0,
-			y: 15
+			y: 38
 		};
 		this.pos2 = {
 			x: 31.9,
-			y: 15
+			y: 38
 		};
 	}
 
-	reset() {
+	reset () {
 		this.pos1 = {
 			x: 0,
-			y: 15
+			y: 38
 		};
 		this.pos2 = {
 			x: 31.9,
-			y: 15
+			y: 38
 		};
 	}
 
