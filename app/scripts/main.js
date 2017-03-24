@@ -5,6 +5,6 @@
 $(function() {
     'use strict';
 
-    var game = new window.Game($('.GameCanvas'));
+    var game = new Game($('.GameCanvas'));
     game.start();
 });

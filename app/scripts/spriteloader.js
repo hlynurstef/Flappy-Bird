@@ -1,4 +1,4 @@
-var 
+/*var 
 
 s_bird,
 s_bg,
@@ -71,3 +71,4 @@ function initSprites(img) {
     }
   }
 }
+*/
