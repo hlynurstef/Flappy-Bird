@@ -1,14 +1,17 @@
 # Flappy Bird
 
-# HTML5 CSS-based Game
+This is a clone of the famous Flappy Bird game written in HTML5, CSS3 and JavaScript.
 
-This game project has the following:
+## About
 
-* 1024x768 pixel game canvas.
-* All positions and sizes defined using a 10px em. This means that the game could be scaled up and down by changing the base font-size. This is one way to make the graphics responsive.
-* A simple game loop which calculates delta and can be started and stopped.
-* A player entity which can be moved around the canvas using the arrow keys.
-* A "Game Over" screen when player is moved outside bounds, where the game can be restarted.
+* 480x320 pixel game canvas that resizes with the browser window.
+* All positions and sizes defined using a 10px em. This means that the game could be scaled up and down by changing the base font-size.
+
+## How to play
+
+* Use the space bar to make the bird jump.
+* Don't hit the pipes or the ground.
+* Remain calm.
 
 ## Setup
 
@@ -21,4 +24,5 @@ grunt serve
 
 ### extra points ###
 * Random background  (night / day)
-* Random bird color 
+* Random bird color
+* Bird bounces if he hits an obstacle
