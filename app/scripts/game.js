@@ -18,10 +18,10 @@ class Game {
 			this.el.find('.Foreground2')
 		);
 
-		this.splashscreen = new SplashScreen(
+		this.splashScreen = new SplashScreen(
 			this.el.find('.Splash')
 		);
-		this.splashscreen.show();
+		this.splashScreen.show();
 		
 
 		this.isPlaying = false;
@@ -95,7 +95,7 @@ class Game {
 		this.player.reset();
 		this.foreground.reset();
 		this.background.reset();
-		this.splashscreen.show();
+		this.splashScreen.show();
 		this.currentState = this.states.splash;
 	}
 
@@ -120,7 +120,7 @@ class Game {
 	play () {
 		this.isPlaying = true;
 		this.currentState = this.states.game;
-		this.splashscreen.hide();
+		this.splashScreen.hide();
 	}
 
 	resizeGame () {

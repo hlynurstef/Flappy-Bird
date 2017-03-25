@@ -54,14 +54,5 @@ class Controls {
         this._didJump = false;
         return answer;
     }
-
-    /**
-     * Only answers true once until a key is pressed again.
-     */
-    didJump () {
-        var answer = this._didJump;
-        this._didJump = false;
-        return answer;
-    }
 }    
 

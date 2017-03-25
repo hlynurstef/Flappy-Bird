@@ -88,9 +88,9 @@
 	position: absolute;
 	left: 50%;
 	top: 10em;
-	height: 30em;
-	width: 40em;
-	margin-left: -20em;
+	height: 15em;
+	width: 20em;
+	margin-left: -10em;
 	margin-top: -40em;
 	box-sizing: border-box;
 	background: purple;
@@ -107,7 +107,7 @@
 }
 
 .Scoreboard-restart {
-	margin-top: 20em;
+	margin-top: 5em;
 	font-size: inherit;
 	padding: 0.4em 1.5em;
 	border: 0.2em solid white;
@@ -127,9 +127,9 @@ body {
 
 .browsehappy {
 	margin: 0.2em 0;
-	/*background: ?#?ccc?;
+	background: #cccccc;
 	color: #000;
-	padding: 0.2em 0;*/
+	padding: 0.2em 0;
 }
 
 .GameCanvas {

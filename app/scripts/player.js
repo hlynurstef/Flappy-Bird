@@ -28,7 +28,7 @@ class Player {
 		this.rotation = 0;
 		this.velocity = 0;
 		this.gravity = 0.025;
-		this.jumpSpeed = 0.5;
+		this.jumpSpeed = 0.6;
 		this.upFlapSpeed = 0;
 
 		this.controls = new Controls();
@@ -43,64 +43,32 @@ class Player {
 	}
 
 	onFrame (delta) {
-		/*if (this.controls.keys.right) {
-			this.pos.x += delta * SPEED;
-		}
-		if (this.controls.keys.left) {
-			this.pos.x -= delta * SPEED;
-		}
-		if (this.controls.keys.down) {
-			this.pos.y += delta * SPEED;
-		}
-		if (this.controls.keys.up) {
-			this.pos.y -= delta * SPEED;
-		}*/
-		if (this.velocity < 0) {
-			this.upFlapSpeed = 0;
-		}
 
-		if (this.game.currentState === this.game.states.splash) {
-			this.pos.y = this.game.WORLD_HEIGHT - 18 + Math.cos(this.game.frames/15);
-			this.rotation = 0;
-			
-			if (this.controls.keys.space) {
-				this.game.play();
-				this.jump();
-			}
-		}
-		else {
-			if (this.controls.keys.space) {
-				this.jump();
-				this.upFlapSpeed = -4;
-			}
-			this.velocity += this.gravity;
-			this.pos.y += this.velocity;
-
-			// TODO: fix rotation
-			if (this.velocity >= this.jumpSpeed) {
-				console.log('rotating down');
-				this.frame = 1;
-				this.rotation = Math.min(Math.PI/2, this.rotation + 15);
-			}
-			else {
-				console.log('rotating up');
-				this.rotation = -7;
-			}
+		switch (this.game.currentState) {
+			case this.game.states.splash:
+				this.splashState();
+				break;
+		
+			default:
+				this.gameState();
+				break;
 		}
 
 		this.checkCollisionWithBounds();
 
+		// Calculate speed of animation
 		var n = this.game.currentState === this.game.states.splash ? 10 : 5 + this.upFlapSpeed;
 		this.frame += this.game.frames % n === 0 ? 1 : 0;
 		this.frame %= this.animation.length;
 
-		
+		// Convert rotation from radians to degrees
+		var degrees = this.rotation * 180 / Math.PI;
 
 		var i = this.animation[this.frame];
 
 		// Update UI
 		this.el.css('background', 'url(' + this.sprites[i] + ') no-repeat');
-		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) ' + 'rotate(' + this.rotation + 'deg)');
+		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) ' + 'rotate(' + degrees + 'deg)');
 		this.el.css('background-size', '100% auto');
 	}
 
@@ -109,11 +77,43 @@ class Player {
 			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
 			this.pos.y < 0 ||
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
+			this.jump();
 			return this.game.gameover();
 		}
 	}
 
 	jump () {
 		this.velocity = -this.jumpSpeed;
+	}
+
+	splashState () {
+		this.pos.y = this.game.WORLD_HEIGHT - 18 + Math.cos(this.game.frames/15);
+		this.rotation = 0;
+		
+		if (this.controls.didJump()) {
+			this.game.play();
+			this.jump();
+		}
+	}
+
+	gameState () {
+		if (this.velocity < 0) {
+			this.upFlapSpeed = 0;
+		}
+
+		if (this.controls.didJump()) {
+			this.jump();
+			this.upFlapSpeed = -4;
+		}
+		this.velocity += this.gravity;
+		this.pos.y += this.velocity;
+
+		// rotate down
+		if (this.velocity >= this.jumpSpeed) {
+			this.rotation = Math.min(Math.PI/2, this.rotation + 0.08);
+		}
+		else { // rotate up
+			this.rotation = -0.25;
+		}
 	}
 }
