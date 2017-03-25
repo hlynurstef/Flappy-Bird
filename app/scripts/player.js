@@ -17,9 +17,9 @@ class Player {
 		};
 
 		this.sprites = [
-			'../images/bird1.png',
-			'../images/bird2.png',
-			'../images/bird3.png'
+			'../images/bird_yellow_1.png',
+			'../images/bird_yellow_2.png',
+			'../images/bird_yellow_3.png'
 		];
 
 		this.animation = [0,1,2,1];
