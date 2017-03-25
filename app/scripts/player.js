@@ -128,7 +128,7 @@ class Player {
 	}
 
 	splashState () {
-		this.pos.y = this.game.WORLD_HEIGHT - 18 + Math.cos(this.game.frames/15);
+		this.pos.y = this.game.WORLD_HEIGHT - 18 + 0.8*Math.cos(this.game.frames/15);
 		this.rotation = 0;
 		
 		if (this.controls.didJump()) {
