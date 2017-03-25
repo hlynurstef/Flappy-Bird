@@ -20,6 +20,13 @@ class Game {
 			this
 		);
 
+		this.pipes = new Pipes(
+			this.el.find('.PipeSet1'),
+			this.el.find('.PipeSet2'),
+			this.el.find('.PipeSet3'),
+			this
+		);
+
 		this.splashScreen = new SplashScreen(
 			this.el.find('.Splash')
 		);
@@ -74,6 +81,7 @@ class Game {
 		this.player.onFrame(delta);
 		this.foreground.onFrame(delta);
 		this.background.onFrame(delta);
+		this.pipes.onFrame(delta);
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -98,6 +106,7 @@ class Game {
 		this.player.reset();
 		this.foreground.reset();
 		this.background.reset();
+		this.pipes.reset();
 		this.splashScreen.show();
 		this.currentState = this.states.splash;
 	}

@@ -47,7 +47,7 @@ class Player {
 		this.rotation = 0;
 		this.velocity = 0;
 		this.gravity = 0.025;
-		this.jumpSpeed = 0.6;
+		this.jumpSpeed = 0.55;
 		this.upFlapSpeed = 0;
 		this.firstPlay = true;
 		this.gameOverLanding = false;
@@ -82,8 +82,6 @@ class Player {
 	}
 
 	onFrame (delta) {
-		console.log(this.game.currentState);
-
 		switch (this.game.currentState) {
 			case this.game.states.splash:
 				this.splashState();

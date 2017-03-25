@@ -81,6 +81,47 @@
 	background-size: 100% 100%;
 }
 
+.PipeSet1 {
+	position: absolute;
+	width: 5em;
+	height: 48em;
+	top: -10em;
+	transform: translateZ(0) translate(40em, 0em);
+}
+
+.PipeSet2 {
+	position: absolute;
+	width: 5em;
+	height: 48em;
+	top: -10em;
+	transform: translateZ(0) translate(55em, 0em);
+}
+
+.PipeSet3 {
+	position: absolute;
+	width: 5em;
+	height: 48em;
+	top: -10em;
+	transform: translateZ(0) translate(70em, 0em);
+}
+
+.PipeNorth {
+	position: relative;
+	width: 100%;
+	height: 38.5em;
+	top: -10em;
+	background: url(../images/pipenorth.png) no-repeat;
+	background-size: 100%;
+}
+
+.PipeSouth {
+	position: relative;
+	width: 100%;
+	height: 38.5em;
+	background: url(../images/pipesouth.png) no-repeat;
+	background-size: 100%;
+}
+
 .Scoreboard {
 	position: absolute;
 	left: 50%;
