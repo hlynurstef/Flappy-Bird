@@ -50,7 +50,7 @@ class Player {
 		this.jumpSpeed = 0.6;
 		this.upFlapSpeed = 0;
 		this.firstPlay = true;
-		this.controls = new Controls();
+		this.controls = new Controls(game);
 	}
 
 	/**
@@ -81,50 +81,61 @@ class Player {
 	}
 
 	onFrame (delta) {
+		console.log(this.game.currentState);
 
 		switch (this.game.currentState) {
 			case this.game.states.splash:
 				this.splashState();
 				break;
-		
-			default:
+			case this.game.states.game:
 				this.gameState();
+				break;
+			case this.game.states.gameover:
+				this.gameOverState();
+				break;
+			default:
 				break;
 		}
 
 		this.checkCollisionWithBounds();
 
-		// Calculate speed of animation
-		var n = this.game.currentState === this.game.states.splash ? 10 : 5 + this.upFlapSpeed;
-		this.frame += this.game.frames % n === 0 ? 1 : 0;
-		this.frame %= this.animation.length;
+		if (this.game.currentState !== this.game.states.gameover) {
+			// Calculate speed of animation
+			var n = this.game.currentState === this.game.states.splash ? 10 : 5 + this.upFlapSpeed;
+			this.frame += this.game.frames % n === 0 ? 1 : 0;
+			this.frame %= this.animation.length;
 
-		// Convert rotation from radians to degrees
-		// var degrees = this.rotation * 180 / Math.PI;
-
-		var i = this.animation[this.frame];
-
-		// Update UI
-		this.el.css('background', 'url(' + this.currentImage[i] + ') no-repeat');
+			// Get animation sprite and render it
+			var i = this.animation[this.frame];
+			this.el.css('background', 'url(' + this.currentImage[i] + ') no-repeat');
+		}
+		
 		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) ' + 'rotate(' + this.rotation + 'rad)');
 		this.el.css('background-size', '100% auto');
+
 	}
 
 	checkCollisionWithBounds () {
-		if (this.pos.x < 0 ||
-			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
-			this.pos.y < 0 ||
-			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
-			this.game.gameSounds.play_sound('hit');
+		if (this.pos.y < -10) {
+			this.pos.y = -10;
+		}
+		
+		if (this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
+
+			this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
 			// TODO: make bird jump when he collides
-			// this.jump();
-			return this.game.gameover();
+			if (this.game.currentState !== this.game.states.gameover) {
+				//this.jump();
+				this.velocity = -this.jumpSpeed/2;
+				this.game.gameSounds.playSound('hit');
+				return this.game.gameover();
+			}
 		}
 	}
 
 	jump () {
 		this.velocity = -this.jumpSpeed;
-		this.game.gameSounds.play_sound('jump');
+		this.game.gameSounds.playSound('jump');
 	}
 
 	splashState () {
@@ -156,5 +167,18 @@ class Player {
 		else { // rotate up
 			this.rotation = -0.25;
 		}
+	}
+
+	gameOverState () {
+		this.velocity += this.gravity;
+		this.pos.y += this.velocity;
+
+		// rotate down
+		/*if (this.velocity >= this.jumpSpeed) {
+			this.rotation = Math.min(Math.PI/2, this.rotation + 0.08);
+		}
+		else { // rotate up
+			this.rotation = -0.25;
+		}*/
 	}
 }

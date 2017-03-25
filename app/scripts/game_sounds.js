@@ -9,7 +9,7 @@ class Game_Sounds {
 		}
 	}
 
-	play_sound(s) { 
+	playSound(s) { 
 		this.audiochannels[this.c]['channel'].src = document.getElementById(s).src;
 		this.audiochannels[this.c]['channel'].load();
 		this.audiochannels[this.c]['channel'].play(); 

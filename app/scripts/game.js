@@ -11,11 +11,13 @@ class Game {
 		this.player = new Player(this.el.find('.Player'), this);
 		this.background = new Background(
 			this.el.find('.Background1'),
-			this.el.find('.Background2')
+			this.el.find('.Background2'),
+			this
 		);
 		this.foreground = new Foreground(
 			this.el.find('.Foreground1'),
-			this.el.find('.Foreground2')
+			this.el.find('.Foreground2'),
+			this
 		);
 
 		this.splashScreen = new SplashScreen(
@@ -24,12 +26,12 @@ class Game {
 		this.splashScreen.show();
 		
 
-		this.isPlaying = false;
+		//this.isPlaying = false;
 
 		this.states = {
 			splash: 0,
 			game: 1,
-			score: 2
+			gameover: 2
 		};
 		this.currentState = this.states.splash;
 
@@ -59,9 +61,9 @@ class Game {
 	onFrame () {
 		this.frames++;
 		// Check if the game loop should stop.
-		if (!this.isPlaying) {
+		/*if (!this.isPlaying) {
 			return;
-		}
+		}*/
 
 		// Calculate how long since last frame in seconds.
 		var now = +new Date() / 1000,
@@ -86,7 +88,7 @@ class Game {
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
-		this.isPlaying = true;
+		//this.isPlaying = true;
 	}
 
 	/**
@@ -104,8 +106,8 @@ class Game {
 	 * Signals that the game is over.
 	 */
 	gameover () {
-		this.isPlaying = false;
-		this.currentState = this.states.score;
+		//this.isPlaying = false;
+		this.currentState = this.states.gameover;
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;
@@ -114,12 +116,14 @@ class Game {
 					.find('.Scoreboard-restart')
 					.one('click', function() {
 						scoreboardEl.removeClass('is-visible');
-						that.start();
+						that.reset();
+						//this.currentState = this.states.splash;
+						//that.start();
 					});
 	}
 
 	play () {
-		this.isPlaying = true;
+		//this.isPlaying = true;
 		this.currentState = this.states.game;
 		this.splashScreen.hide();
 	}
