@@ -17,3 +17,8 @@ npm install
 bower install
 grunt serve
 ```
+
+
+### extra points ###
+* Random background  (night / day)
+* Random bird color 
