@@ -17,9 +17,9 @@ class Player {
 		};
 
 		this.sprites = [
-			'../images/bird1.png',
-			'../images/bird2.png',
-			'../images/bird3.png'
+			'../images/bird_yellow_1.png',
+			'../images/bird_yellow_2.png',
+			'../images/bird_yellow_3.png'
 		];
 
 		this.animation = [0,1,2,1];
@@ -77,6 +77,7 @@ class Player {
 			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
 			this.pos.y < 0 ||
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
+			this.game.gameSounds.play_sound('hit');
 			this.jump();
 			return this.game.gameover();
 		}
@@ -84,6 +85,7 @@ class Player {
 
 	jump () {
 		this.velocity = -this.jumpSpeed;
+		this.game.gameSounds.play_sound('jump');
 	}
 
 	splashState () {

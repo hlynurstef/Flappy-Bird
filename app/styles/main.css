@@ -4,7 +4,7 @@
 	left: 0;
 	width: 3em;
 	height: 2.2em;
-	background: url(../images/bird1.png) no-repeat;
+	background: url(../images/bird_yellow_1.png) no-repeat;
 	transform: translateZ(0) translate(8em, 8em);
 	background-size: 100% auto;
 }

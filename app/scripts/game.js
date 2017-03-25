@@ -47,6 +47,7 @@ class Game {
 		};
 		this.img.src = '../images/sheet.png';
 		this.resizeGame();
+		this.gameSounds = new Game_Sounds();
 	}
 
 	static get WORLD_WIDTH() { return WORLD_WIDTH; }
