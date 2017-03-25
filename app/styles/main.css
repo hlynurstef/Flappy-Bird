@@ -14,7 +14,6 @@
 	width: 32em;
 	height: 48em;
 	background: url(../images/background_day.png) no-repeat;
-	/*transform: translateZ(0) translate(0em, 24em);*/
 	background-size: 100%;
 }
 
@@ -23,7 +22,6 @@
 	width: 32em;
 	height: 48em;
 	background: url(../images/background_day.png) no-repeat;
-	/*transform: translateZ(0) translate(32em, 24em);*/
 	background-size: 100%;
 }
 
@@ -32,7 +30,6 @@
 	width: 32em;
 	height: 12em;
 	background: url(../images/foreground.png) no-repeat;
-	
 	transform: translateZ(0) translate(0em, 38em);
 	background-size: 100% 100%;
 }

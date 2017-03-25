@@ -22,6 +22,25 @@ class Player {
 			'../images/bird_yellow_3.png'
 		];
 
+		this.sprites = {
+			yellow: [
+				'../images/bird_yellow_1.png',
+				'../images/bird_yellow_2.png',
+				'../images/bird_yellow_3.png'
+			],
+			blue: [
+				'../images/bird_blue_1.png',
+				'../images/bird_blue_2.png',
+				'../images/bird_blue_3.png'
+			],
+			red: [
+				'../images/bird_red_1.png',
+				'../images/bird_red_2.png',
+				'../images/bird_red_3.png'
+			]
+		}
+		this.currentImage = this.sprites.yellow;
+
 		this.animation = [0,1,2,1];
 
 		this.frame = 0;
@@ -30,7 +49,7 @@ class Player {
 		this.gravity = 0.025;
 		this.jumpSpeed = 0.6;
 		this.upFlapSpeed = 0;
-
+		this.firstPlay = true;
 		this.controls = new Controls();
 	}
 
@@ -40,6 +59,25 @@ class Player {
 	reset () {
 		this.pos.x = INITIAL_POSITION_X;
 		this.pos.y = INITIAL_POSITION_Y;
+
+		if (this.firstPlay) {
+			this.firstPlay = false;
+		} 
+		else {
+			var random = Math.floor(Math.random() * (100 - 1)) % 3;
+			switch (random) {
+				case 0:
+					this.currentImage = this.sprites.yellow;
+					break;
+				case 1:
+					this.currentImage = this.sprites.blue;
+					break;
+				case 2:
+					this.currentImage = this.sprites.red;
+				default:
+					break;
+			}
+		}
 	}
 
 	onFrame (delta) {
@@ -62,13 +100,13 @@ class Player {
 		this.frame %= this.animation.length;
 
 		// Convert rotation from radians to degrees
-		var degrees = this.rotation * 180 / Math.PI;
+		// var degrees = this.rotation * 180 / Math.PI;
 
 		var i = this.animation[this.frame];
 
 		// Update UI
-		this.el.css('background', 'url(' + this.sprites[i] + ') no-repeat');
-		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) ' + 'rotate(' + degrees + 'deg)');
+		this.el.css('background', 'url(' + this.currentImage[i] + ') no-repeat');
+		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) ' + 'rotate(' + this.rotation + 'rad)');
 		this.el.css('background-size', '100% auto');
 	}
 
@@ -78,7 +116,8 @@ class Player {
 			this.pos.y < 0 ||
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
 			this.game.gameSounds.play_sound('hit');
-			this.jump();
+			// TODO: make bird jump when he collides
+			// this.jump();
 			return this.game.gameover();
 		}
 	}
