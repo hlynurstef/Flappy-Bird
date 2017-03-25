@@ -50,6 +50,7 @@ class Player {
 		this.jumpSpeed = 0.6;
 		this.upFlapSpeed = 0;
 		this.firstPlay = true;
+		this.gameOverLanding = false;
 		this.controls = new Controls(game);
 	}
 
@@ -123,12 +124,15 @@ class Player {
 		if (this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
 
 			this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
-			// TODO: make bird jump when he collides
 			if (this.game.currentState !== this.game.states.gameover) {
 				//this.jump();
-				this.velocity = -this.jumpSpeed/2;
+				this.gameOverLanding = true;
+				this.velocity = -this.jumpSpeed/1.5;
 				this.game.gameSounds.playSound('hit');
 				return this.game.gameover();
+			}
+			else {
+				this.gameOverLanding = false;
 			}
 		}
 	}
@@ -136,6 +140,16 @@ class Player {
 	jump () {
 		this.velocity = -this.jumpSpeed;
 		this.game.gameSounds.playSound('jump');
+	}
+
+	rotate () {
+		// rotate down
+		if (this.velocity >= this.jumpSpeed) {
+			this.rotation = Math.min(Math.PI/2, this.rotation + 0.08);
+		}
+		else { // rotate up
+			this.rotation = -0.25;
+		}
 	}
 
 	splashState () {
@@ -160,25 +174,15 @@ class Player {
 		this.velocity += this.gravity;
 		this.pos.y += this.velocity;
 
-		// rotate down
-		if (this.velocity >= this.jumpSpeed) {
-			this.rotation = Math.min(Math.PI/2, this.rotation + 0.08);
-		}
-		else { // rotate up
-			this.rotation = -0.25;
-		}
+		this.rotate();		
 	}
 
 	gameOverState () {
 		this.velocity += this.gravity;
 		this.pos.y += this.velocity;
 
-		// rotate down
-		/*if (this.velocity >= this.jumpSpeed) {
-			this.rotation = Math.min(Math.PI/2, this.rotation + 0.08);
+		if (this.gameOverLanding) {
+			this.rotate();
 		}
-		else { // rotate up
-			this.rotation = -0.25;
-		}*/
 	}
 }
