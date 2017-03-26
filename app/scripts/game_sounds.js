@@ -1,6 +1,7 @@
 class Game_Sounds {
-	constructor (el) {
+	constructor (el, game) {
         this.el = el;
+		this.game = game;
 		this.channel_max = 6;	// number of channels 
 		this.c = 0;				// number of the next free channel 
 		this.audiochannels = new Array(); 
@@ -30,10 +31,12 @@ class Game_Sounds {
 
 	toggleAudio() {
 		this.mute = !this.mute;
-		if(this.mute) {
-			this.stopNightmare();
-		} else {
-			this.playNightmare();
+		if (this.game.nightmareMode) {
+			if(this.mute) {
+				this.stopNightmare();
+			} else {
+				this.playNightmare();
+			}
 		}
 	}
 

@@ -68,7 +68,8 @@ class Game {
 
 		this.resizeGame();
 		this.gameSounds = new Game_Sounds(
-			this.el.find('.musicToggle')
+			this.el.find('.musicToggle'),
+			this
 		);
 	}
 
