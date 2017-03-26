@@ -114,6 +114,10 @@ class Game {
 	 * Resets the state of the game so a new game can be started.
 	 */
 	reset () {
+		
+		if (this.nightmareMode) {
+			this.gameSounds.playNightmare();
+		}
 
 		if (!this.firstPlay) {
 			this.player.reset();

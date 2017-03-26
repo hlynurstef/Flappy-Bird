@@ -8,6 +8,8 @@ class Game_Sounds {
 			this.audiochannels[a]['channel'] = new Audio();				// expected end time for this channel
 		}
 		this.mute = false;
+		this.theme = new Audio('../sounds/nightmare_theme.mp3');
+		this.playingTheme = false;
 	}
 
 	playSound(s) { 
@@ -26,4 +28,18 @@ class Game_Sounds {
 	toggleAudio() {
 		this.mute = !this.mute;
 	}
+
+	playNightmare() {
+		this.playingTheme = true;
+		this.nightmareTheme.addEventListener('ended', function() {
+			this.currentTime = 0;
+			this.play();
+		}, false);
+		this.nightmareTheme.play();
+	}
+
+	stopNightmare() {
+		this.nightmareTheme.pause();
+	}
 }
+
