@@ -126,8 +126,6 @@ class Game {
 					.one('click', function() {
 						scoreboardEl.removeClass('is-visible');
 						that.reset();
-						//this.currentState = this.states.splash;
-						//that.start();
 					});
 	}
 
