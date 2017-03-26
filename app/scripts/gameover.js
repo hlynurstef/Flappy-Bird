@@ -26,6 +26,7 @@ class GameOver {
 			that.game.currentState = that.game.states.intro;
 			that.game.firstPlay = true;
 			that.game.nightmareMode = false;
+			that.game.player.movingToStartPos = true;
 			that.game.reset();
 		});
 	}

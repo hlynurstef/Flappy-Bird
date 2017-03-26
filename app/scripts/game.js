@@ -120,28 +120,12 @@ class Game {
 		}
 		else {
 			this.gameSounds.stopNightmare();
-		}
-
-		if (this.currentState === this.states.intro) {
-			this.player.reset();
 			this.foreground.reset();
 			this.background.reset();
-			this.pipes.reset();
-			this.scoreboard.reset();
-			this.introScreen.setIntroScreen();
-			//this.currentState = this.states.intro;
-		}
-		else {
 			this.player.reset();
-			this.foreground.reset();
-			this.background.reset();
-			this.pipes.reset();
-			this.scoreboard.reset();
-			this.splashScreen.show();
-			this.currentState = this.states.splash;
 		}
 
-		/*if (!this.firstPlay) {
+		if (!this.firstPlay) {
 			this.player.reset();
 			this.foreground.reset();
 			this.background.reset();
@@ -152,10 +136,14 @@ class Game {
 		}
 		else {
 			this.firstPlay = false;
+			//this.player.reset();
+			//this.foreground.reset();
+			//this.background.reset();
+			this.pipes.reset();
 			this.scoreboard.reset();
 			this.introScreen.setIntroScreen();
 			this.currentState = this.states.intro;
-		}*/
+		}
 		
 	}
 
@@ -182,7 +170,6 @@ class Game {
 	}
 
 	play () {
-		//this.isPlaying = true;
 		this.currentState = this.states.game;
 		this.splashScreen.hide();
 	}
