@@ -13,6 +13,10 @@ This is a clone of the famous Flappy Bird game written in HTML5, CSS3 and JavaSc
 * Don't hit the pipes or the ground.
 * Remain calm.
 
+## Music
+
+* Nightmare Mode song: http://freesound.org/people/frankum/sounds/346193/
+
 ## Setup
 
 ```
