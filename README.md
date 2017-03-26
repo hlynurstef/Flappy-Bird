@@ -13,6 +13,10 @@ This is a clone of the famous Flappy Bird game written in HTML5, CSS3 and JavaSc
 * Don't hit the pipes or the ground.
 * Remain calm.
 
+## Music
+
+* Nightmare Mode song: http://freesound.org/people/frankum/sounds/346193/
+
 ## Setup
 
 ```
@@ -27,3 +31,4 @@ grunt serve
 * Random bird color
 * Bird bounces if he hits an obstacle
 * Circle-Rectangle collision calculations by calculating the distance to the closest points on the pipes and checking if they intersect with the circle area of the bird (function checkPipeCollision() in player.js)
+* Nightmare mode!
