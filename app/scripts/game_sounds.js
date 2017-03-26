@@ -40,6 +40,7 @@ class Game_Sounds {
 
 	stopNightmare() {
 		this.nightmareTheme.pause();
+		this.nightmareTheme.currentTime = 0;
 	}
 }
 
