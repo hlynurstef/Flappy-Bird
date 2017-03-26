@@ -43,7 +43,6 @@ class Player {
 		this.gravity = 0.025;
 		this.jumpSpeed = 0.5;
 		this.upFlapSpeed = 0;
-		this.firstPlay = true;
 		this.gameOverLanding = false;
 		this.falling = false;
 		this.controls = new Controls(game);
@@ -69,10 +68,7 @@ class Player {
 		this.rotation = 0;
 		this.velocity = 0;
 
-		if (this.firstPlay) {
-			this.firstPlay = false;
-		} 
-		else {
+		if (!this.game.firstPlay) {
 			var random = Math.floor(Math.random() * (100 - 1)) % 3;
 			switch (random) {
 				case 0:
@@ -176,10 +172,8 @@ class Player {
 	checkIfThroughPipe () {
 		var pipe = this.game.pipes.pos[this.game.pipes.closestPipe];
 		if ( this.pos.x + (WIDTH/2) >= pipe.x + (this.game.pipes.width/2) && pipe != this.currentPipe) {
-			this.game.currentScore++;
-			this.game.gameSounds.playSound('score');
+			this.game.scoreboard.addScore();
 			this.currentPipe = pipe;
-			console.log("Current score: " + this.game.currentScore);
 		}
 	}
 

@@ -27,6 +27,11 @@ class Game {
 			this
 		);
 
+		this.scoreboard = new Scoreboard(
+			this.el.find('.Score'),
+			this
+		);
+
 		this.splashScreen = new SplashScreen(
 			this.el.find('.Splash')
 		);
@@ -37,9 +42,6 @@ class Game {
 			this.game = this
 		);
 		
-
-		//this.isPlaying = false;
-
 		this.states = {
 			intro: 0,
 			splash: 1,
@@ -49,6 +51,7 @@ class Game {
 		this.currentState = this.states.intro;
 
 		this.frames = 0;
+		this.firstPlay = true;
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -56,15 +59,8 @@ class Game {
 		this.WORLD_WIDTH = 32;
 		this.WORLD_HEIGHT = 38;
 
-		this.img = new Image();
-		this.img.onload = function() {
-			loadAllSprites(this);
-		};
-		this.img.src = '../images/sheet.png';
 		this.resizeGame();
 		this.gameSounds = new Game_Sounds();
-		this.topScore = 0;
-		this.currentScore = 0;
 	}
 
 	static get WORLD_WIDTH() { return WORLD_WIDTH; }
@@ -90,6 +86,7 @@ class Game {
 		this.foreground.onFrame(delta);
 		this.background.onFrame(delta);
 		this.pipes.onFrame(delta);
+		this.scoreboard.onFrame();
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -99,25 +96,34 @@ class Game {
 	 * Starts a new game.
 	 */
 	start () {
-		this.introScreen.setIntroScreen();
+		this.reset();
 
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;
 		window.requestAnimationFrame(this.onFrame);
-		//this.isPlaying = true;
 	}
 
 	/**
 	 * Resets the state of the game so a new game can be started.
 	 */
 	reset () {
-		this.player.reset();
-		this.foreground.reset();
-		this.background.reset();
-		this.pipes.reset();
-		this.splashScreen.show();
-		this.currentState = this.states.splash;
-		this.currentScore = 0;
+
+		if (!this.firstPlay) {
+			this.player.reset();
+			this.foreground.reset();
+			this.background.reset();
+			this.pipes.reset();
+			this.scoreboard.reset();
+			this.splashScreen.show();
+			this.currentState = this.states.splash;
+		}
+		else {
+			this.firstPlay = false;
+			this.scoreboard.reset();
+			this.introScreen.setIntroScreen();
+			this.currentState = this.states.intro;
+		}
+		
 	}
 
 	/**
@@ -126,10 +132,10 @@ class Game {
 	gameover () {
 		//this.isPlaying = false;
 		this.currentState = this.states.gameover;
-		if(this.currentScore > this.topScore) {
-			this.topScore = this.currentScore;
-			console.log("NEW HIGH SCORE: " + this.topScore);
-		}
+
+		// TODO: refactor code from this function
+		this.scoreboard.showGameOverScore(); // <------- into this function in scoreboard
+
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');

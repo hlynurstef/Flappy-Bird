@@ -236,3 +236,42 @@ body {
 	height: 2em;
 	background: red;
 }
+
+.Score {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+	height: 3em;
+	top: 5em;
+}
+
+.NumberDigit {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 2em;
+	height: 3em;
+	background: url(../images/numbers/0.png) no-repeat;
+	background-size: 100%;
+}
+
+.NumberTen {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 2em;
+	height: 3em;
+	background: url(../images/numbers/0.png) no-repeat;
+	background-size: 100%;
+}
+
+.NumberHundred {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 2em;
+	height: 3em;
+	background: url(../images/numbers/0.png) no-repeat;
+	background-size: 100%;
+}
