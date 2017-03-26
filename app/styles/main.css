@@ -142,14 +142,40 @@
 
 .GameOverScorecard {
 	position: absolute;
-	width: 20em;
-	height: 12em;
+	width: 22em;
+	height: 14em;
 	top: 50%;
 	left: 50%;
-	margin-left: -10em;
-	margin-top: -4em;
+	margin-left: -11em;
+	margin-top: -5em;
 	background: url(../images/scoreboard.png) no-repeat;
 	background-size: 100%;
+}
+
+.CurrentScore {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	width: 100%;
+	margin-top: 3em;
+	margin-left: -1.5em;
+}
+
+.scoreItem {
+	display: none;
+	width: 2em;
+	height: 2em;
+	background: url(../images/numbers/0.png) no-repeat;
+	background-size: auto 100%;
+}
+
+.HighScore {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	width: 100%;
+	margin-top: 0.3em;	
+	margin-left: -1.5em;
 }
 
 .GameOverPlay {
@@ -161,7 +187,7 @@
 	margin-left: -10em;
 	margin-top: 9em;
 	background: url(../images/play_button.png) no-repeat;
-	background-size: 100%;
+	background-size: auto 100%;
 }
 
 .Foreground2 {
@@ -215,43 +241,6 @@
 	background-size: 100%;
 }
 
-.Scoreboard {
-	position: absolute;
-	left: 50%;
-	top: 10em;
-	height: 15em;
-	width: 20em;
-	margin-left: -10em;
-	margin-top: -40em;
-	box-sizing: border-box;
-	background: purple;
-	text-align: center;
-	-webkit-transform: none;
-}
-
-/**
-* Reset transform to animate it into the correct spot on the screen.
-*/
-.Scoreboard.is-visible {
-	-webkit-transform: translateZ(0) translate(0, 40em);
-	-webkit-transition: -webkit-transform 0.5s;
-}
-
-.Scoreboard-restart {
-	margin-top: 5em;
-	font-size: inherit;
-	padding: 0.4em 1.5em;
-	border: 0.2em solid white;
-	background: none;
-	cursor: pointer;
-}
-
-.Scoreboard-restartText {
-	font-family: 'Comic Sans MS', serif;
-	font-size: 2.4em;
-	color: white;
-}
-
 body {
 	background: black;
 }
@@ -303,32 +292,22 @@ body {
 	top: 5em;
 }
 
-.NumberDigit {
+.liveScoreItem {
 	display: none;
 	justify-content: center;
 	align-items: center;
 	width: 2em;
 	height: 3em;
 	background: url(../images/numbers/0.png) no-repeat;
-	background-size: 100%;
+	background-size: auto 100%;
 }
 
-.NumberTen {
-	display: none;
-	justify-content: center;
-	align-items: center;
-	width: 2em;
-	height: 3em;
-	background: url(../images/numbers/0.png) no-repeat;
-	background-size: 100%;
-}
-
-.NumberHundred {
-	display: none;
-	justify-content: center;
-	align-items: center;
-	width: 2em;
-	height: 3em;
-	background: url(../images/numbers/0.png) no-repeat;
-	background-size: 100%;
+.newLabel {
+	display: flex;
+	margin-top: 0.7em;
+	margin-left: 13.4em;
+	width: 3em;
+	height: 1.2em;
+	background: url() no-repeat;
+	background-size: auto 100%;
 }
