@@ -25,9 +25,7 @@ class Scoreboard {
 
 	reset () {
 		this.currentScore = 0;
-		for (var i = 0; i < this.numberEl.length; i++) {
-			this.numberEl[i].hide();
-		}
+		this.hideLiveScore();
 	}
 
 	onFrame () {
@@ -52,7 +50,7 @@ class Scoreboard {
 	}
 
 	showGameOverScore () {
-
+		this.hideLiveScore();
 		
 		if (this.currentScore > this.topScore) {
 			this.topScore = this.currentScore;
@@ -79,6 +77,12 @@ class Scoreboard {
 			if(this.HighScoreEl[i].is(':hidden')) {
 				this.HighScoreEl[i].show();
 			}
+		}
+	}
+
+	hideLiveScore() {
+		for (var i = 0; i < this.numberEl.length; i++) {
+			this.numberEl[i].hide();
 		}
 	}
 }
