@@ -41,14 +41,15 @@ class Player {
 		this.rotation = 0;
 		this.velocity = 0;
 		this.gravity = 0.025;
-		this.jumpSpeed = 0.55;
+		this.jumpSpeed = 0.5;
 		this.upFlapSpeed = 0;
 		this.firstPlay = true;
 		this.gameOverLanding = false;
 		this.falling = false;
 		this.controls = new Controls(game);
-		this.movingToStartPos = true;
-
+		// Is true when character is moving from Intro screen pos to splash pos
+		this.movingToStartPos = true;	
+		this.currentPipe = -1;
 	}
 
 	/**
@@ -172,6 +173,16 @@ class Player {
 
 	}
 
+	checkIfThroughPipe () {
+		var pipe = this.game.pipes.pos[this.game.pipes.closestPipe];
+		if ( this.pos.x + (WIDTH/2) >= pipe.x + (this.game.pipes.width/2) && pipe != this.currentPipe) {
+			this.game.currentScore++;
+			this.game.gameSounds.playSound('score');
+			this.currentPipe = pipe;
+			console.log("Current score: " + this.game.currentScore);
+		}
+	}
+
 	die () {
 		this.gameOverLanding = true;
 		this.velocity = -this.jumpSpeed/1.5;
@@ -244,6 +255,7 @@ class Player {
 
 		this.rotate();
 		this.checkPipeCollision();	
+		this.checkIfThroughPipe();
 	}
 
 	gameOverState () {
