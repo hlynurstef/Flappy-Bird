@@ -1,11 +1,23 @@
 class Scoreboard {
-	constructor(currScoreEl, game) {
+	constructor(currScoreEl, gameOverEl, game) {
 		this.currScoreEl = currScoreEl;
 		this.numberEl = [
-			this.currScoreEl.find('.NumberHundred'),
-			this.currScoreEl.find('.NumberTen'),
-			this.currScoreEl.find('.NumberDigit')
+			this.currScoreEl.find('#NumberDigit'),
+			this.currScoreEl.find('#NumberTen'),
+			this.currScoreEl.find('#NumberHundred')
 		];
+		this.gameOverEl = gameOverEl;
+		this.GameOverEl = [
+			this.gameOverEl.find('#GameOverDigit'),
+			this.gameOverEl.find('#GameOverTen'),
+			this.gameOverEl.find('#GameOverHundred')
+		]
+		this.HighScoreEl = [
+			this.gameOverEl.find('#HighScoreDigit'),
+			this.gameOverEl.find('#HighScoreTen'),
+			this.gameOverEl.find('#HighScoreHundred')
+		]
+		this.newLabelEl = this.gameOverEl.find('.newLabel');
 		this.game = game;
 		this.topScore = 0;
 		this.currentScore = 0;
@@ -15,7 +27,6 @@ class Scoreboard {
 		this.currentScore = 0;
 		for (var i = 0; i < this.numberEl.length; i++) {
 			this.numberEl[i].hide();
-			console.log('hiding stuff');
 		}
 	}
 
@@ -27,7 +38,6 @@ class Scoreboard {
 				this.numberEl[i].css('background-size', 'auto 100%');
 				if(this.numberEl[i].is(':hidden')) {
 					this.numberEl[i].show();
-					console.log('showing');
 				}
 			}
 		}
@@ -42,11 +52,31 @@ class Scoreboard {
 	}
 
 	showGameOverScore () {
-		// TODO: add code for showing scoreboard at game over
-		console.log('SCORE: ' + this.currentScore);
+
+		
 		if (this.currentScore > this.topScore) {
 			this.topScore = this.currentScore;
-			console.log('NEW HIGH SCORE: ' + this.topScore);
+			this.newLabelEl.css('background', 'url(../images/new.png) no-repeat');
+		} else {
+			this.newLabelEl.css('background', 'url() no-repeat');
+		}
+		
+		var score = this.currentScore.toString().split('');
+		for (var i = 0; i < score.length; i++) {
+			this.GameOverEl[i].css('background', 'url(../images/numbers/' + score[i] + '.png) no-repeat');
+			this.GameOverEl[i].css('background-size', 'auto 100%');
+			if(this.GameOverEl[i].is(':hidden')) {
+				this.GameOverEl[i].show();
+			}
+		}
+
+		score = this.topScore.toString().split('');
+		for (var i = 0; i < score.length; i++) {
+			this.HighScoreEl[i].css('background', 'url(../images/numbers/' + score[i] + '.png) no-repeat');
+			this.HighScoreEl[i].css('background-size', 'auto 100%');
+			if(this.HighScoreEl[i].is(':hidden')) {
+				this.HighScoreEl[i].show();
+			}
 		}
 	}
 }

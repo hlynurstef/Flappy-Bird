@@ -29,6 +29,7 @@ class Game {
 
 		this.scoreboard = new Scoreboard(
 			this.el.find('.Score'),
+			this.el.find('.GameOver'),
 			this
 		);
 
