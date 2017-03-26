@@ -184,7 +184,7 @@ class Player {
 	die () {
 		this.gameOverLanding = true;
 		this.velocity = -this.jumpSpeed/1.5;
-		this.game.gameSounds.playSound('hit');
+		this.game.gameSounds.playSound('hitNfall');
 		this.game.gameover();
 	}
 
