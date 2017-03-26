@@ -1,6 +1,6 @@
 class Foreground {
 	constructor(el1, el2, game) {
-		this.speed = 7.5;
+		this.speed = 8;
 		this.el1 = el1;
 		this.el2 = el2;
 		this.game = game;
@@ -32,7 +32,7 @@ class Foreground {
 			this.el1.css('background-size', '100%');
 			this.el2.css('background', 'url(' + this.foregrounds[0] + ') no-repeat');
 			this.el2.css('background-size', '100%');
-			this.speed = 7.5;
+			this.speed = 8;
 		}
 
 		this.pos1 = {
