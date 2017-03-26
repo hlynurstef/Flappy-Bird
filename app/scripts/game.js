@@ -30,17 +30,23 @@ class Game {
 		this.splashScreen = new SplashScreen(
 			this.el.find('.Splash')
 		);
-		this.splashScreen.show();
+		this.splashScreen.hide();
+
+		this.introScreen = new IntroScreen(
+			this.el.find('.Intro'),
+			this.game = this
+		);
 		
 
 		//this.isPlaying = false;
 
 		this.states = {
-			splash: 0,
-			game: 1,
-			gameover: 2
+			intro: 0,
+			splash: 1,
+			game: 2,
+			gameover: 3
 		};
-		this.currentState = this.states.splash;
+		this.currentState = this.states.intro;
 
 		this.frames = 0;
 
@@ -91,7 +97,7 @@ class Game {
 	 * Starts a new game.
 	 */
 	start () {
-		this.reset();
+		this.introScreen.setIntroScreen();
 
 		// Restart the onFrame loop
 		this.lastFrame = +new Date() / 1000;

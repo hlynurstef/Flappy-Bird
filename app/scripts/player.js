@@ -16,12 +16,6 @@ class Player {
 			y: INITIAL_POSITION_Y 
 		};
 
-		this.sprites = [
-			'../images/bird_yellow_1.png',
-			'../images/bird_yellow_2.png',
-			'../images/bird_yellow_3.png'
-		];
-
 		this.sprites = {
 			yellow: [
 				'../images/bird_yellow_1.png',
@@ -53,14 +47,22 @@ class Player {
 		this.gameOverLanding = false;
 		this.falling = false;
 		this.controls = new Controls(game);
+		this.movingToStartPos = true;
+
 	}
 
 	/**
 	 * Resets the state of the player for a new game.
 	 */
 	reset () {
-		this.pos.x = INITIAL_POSITION_X;
-		this.pos.y = INITIAL_POSITION_Y;
+		if(this.movingToStartPos) {
+			this.pos.x = this.game.WORLD_WIDTH - 18;
+			this.pos.y = this.game.WORLD_HEIGHT - 21;
+		} else {
+			this.pos.x = INITIAL_POSITION_X;
+			this.pos.y = INITIAL_POSITION_Y;
+		}
+		
 		this.falling = false;
 		this.gameOverLanding = false;
 		this.rotation = 0;
@@ -96,6 +98,9 @@ class Player {
 				break;
 			case this.game.states.gameover:
 				this.gameOverState();
+				break;
+			case this.game.states.intro:
+				this.introState();
 				break;
 			default:
 				break;
@@ -193,8 +198,30 @@ class Player {
 		}
 	}
 
+	introState() {
+		this.pos.y = this.game.WORLD_HEIGHT - 21 + 0.8*Math.cos(this.game.frames/15);
+		this.pos.x = this.game.WORLD_WIDTH - 18;
+		this.rotation = 0;
+	}
+
 	splashState () {
-		this.pos.y = this.game.WORLD_HEIGHT - 18 + 0.8*Math.cos(this.game.frames/15);
+		if(this.movingToStartPos) {
+			let dx = (INITIAL_POSITION_X) - this.pos.x;
+			let dy = (this.game.WORLD_WIDTH - 18) - this.pos.y;
+			let distance = Math.sqrt((dx*dx) + (dy * dy));
+			let ratio = SPEED / distance;
+			this.pos.x -= ratio/30;
+			this.pos.y += ratio/60;
+
+			if(this.pos.x <= INITIAL_POSITION_X ||
+				this.pos.y >= this.game.WORLD_HEIGHT - 18) {
+				this.movingToStartPos = false;
+			}	
+		} else {
+			this.pos.y = this.game.WORLD_HEIGHT - 18 + 0.8*Math.cos(this.game.frames/15);
+			this.pos.x = INITIAL_POSITION_X;
+		}
+
 		this.rotation = 0;
 		
 		if (this.controls.didJump()) {
