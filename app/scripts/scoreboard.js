@@ -57,8 +57,10 @@ class Scoreboard {
 		if (this.currentScore > this.topScore) {
 			this.topScore = this.currentScore;
 			this.newLabelEl.css('background', 'url(../images/new.png) no-repeat');
+			this.newLabelEl.css('background-size', 'auto 100%');
 		} else {
 			this.newLabelEl.css('background', 'url() no-repeat');
+			this.newLabelEl.css('background-size', 'auto 100%');
 		}
 		
 		var score = this.currentScore.toString().split('');
