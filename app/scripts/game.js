@@ -57,6 +57,7 @@ class Game {
 
 		this.frames = 0;
 		this.firstPlay = true;
+		this.nightmareMode = false;
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);

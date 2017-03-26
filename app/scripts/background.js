@@ -6,7 +6,8 @@ class Background {
 		this.game = game;
 		this.backgrounds = [
 			'../images/background_day.png',
-			'../images/background_night.png'
+			'../images/background_night.png',
+			'../images/background_nightmare.png'
 		];
 		this.currentImage = this.backgrounds[0];
 		this.stuff = 0;
@@ -27,14 +28,21 @@ class Background {
 	}
 
 	reset() {
-		// Don't change background for first play, always start with day background
-		if (this.firstPlay) {
-			this.firstPlay = false;
+
+		if (this.game.nightmareMode) {
+			this.currentImage = this.backgrounds[2];
 		}
 		else {
-			var random = Math.floor(Math.random() * (100 - 1));
-			this.currentImage = this.backgrounds[random % this.backgrounds.length];
+			// Don't change background for first play, always start with day background
+			if (this.firstPlay) {
+				this.firstPlay = false;
+			}
+			else {
+				var random = Math.floor(Math.random() * (100 - 1));
+				this.currentImage = this.backgrounds[random % 2];
+			}
 		}
+		
 
 		this.pos1 = {
 			x: 0,

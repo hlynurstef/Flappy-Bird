@@ -20,5 +20,12 @@ class IntroScreen {
 			that.game.currentState = that.game.states.splash;
 			that.game.reset();
 		});
+
+		$('.IntroNightmare').one('click', function() {
+			that.hide();
+			that.game.nightmareMode = true;
+			that.game.currentState = that.game.states.splash;
+			that.game.reset();
+		});
 	}
 }

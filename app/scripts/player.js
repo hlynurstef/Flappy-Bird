@@ -41,7 +41,7 @@ class Player {
 		this.rotation = 0;
 		this.velocity = 0;
 		this.gravity = 0.025;
-		this.jumpSpeed = 0.5;
+		this.jumpSpeed = 0.52;
 		this.upFlapSpeed = 0;
 		this.gameOverLanding = false;
 		this.falling = false;
@@ -56,6 +56,12 @@ class Player {
 	 * Resets the state of the player for a new game.
 	 */
 	reset () {
+		if (this.game.nightmareMode) {
+			this.jumpSpeed = 0.35;
+		}
+		else {
+			this.jumpSpeed = 0.52;
+		}
 		if(this.movingToStartPos) {
 			this.pos.x = this.game.WORLD_WIDTH - 18;
 			this.pos.y = this.game.WORLD_HEIGHT - 21;

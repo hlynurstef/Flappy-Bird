@@ -12,9 +12,29 @@ class Foreground {
 			x: 31.9,
 			y: 38
 		};
+
+		this.foregrounds = [
+			'../images/foreground.png',
+			'../images/foreground_nightmare.png'
+		];
 	}
 
 	reset () {
+		if (this.game.nightmareMode) {
+			this.el1.css('background', 'url(' + this.foregrounds[1] + ') no-repeat');
+			this.el1.css('background-size', '100%');
+			this.el2.css('background', 'url(' + this.foregrounds[1] + ') no-repeat');
+			this.el2.css('background-size', '100%');
+			this.speed = 14;
+		}
+		else {
+			this.el1.css('background', 'url(' + this.foregrounds[0] + ') no-repeat');
+			this.el1.css('background-size', '100%');
+			this.el2.css('background', 'url(' + this.foregrounds[0] + ') no-repeat');
+			this.el2.css('background-size', '100%');
+			this.speed = 6.4;
+		}
+
 		this.pos1 = {
 			x: 0,
 			y: 38
