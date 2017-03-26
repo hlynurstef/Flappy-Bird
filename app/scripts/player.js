@@ -46,6 +46,7 @@ class Player {
 		this.gameOverLanding = false;
 		this.falling = false;
 		this.controls = new Controls(game);
+		this.firstPlay = true;
 		// Is true when character is moving from Intro screen pos to splash pos
 		this.movingToStartPos = true;	
 		this.currentPipe = -1;
@@ -68,7 +69,10 @@ class Player {
 		this.rotation = 0;
 		this.velocity = 0;
 
-		if (!this.game.firstPlay) {
+		if (this.firstPlay) {
+			this.firstPlay = false;
+		}
+		else {
 			var random = Math.floor(Math.random() * (100 - 1)) % 3;
 			switch (random) {
 				case 0:
@@ -229,7 +233,7 @@ class Player {
 
 		this.rotation = 0;
 		
-		if (this.controls.didJump()) {
+		if (this.controls.didJump() && !this.movingToStartPos) {
 			this.game.play();
 			this.jump();
 		}

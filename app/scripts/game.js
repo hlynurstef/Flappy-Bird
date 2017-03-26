@@ -39,9 +39,14 @@ class Game {
 
 		this.introScreen = new IntroScreen(
 			this.el.find('.Intro'),
-			this.game = this
+			this
 		);
 		
+		this.gameOver = new GameOver(
+			this.el.find('.GameOver'),
+			this
+		);
+
 		this.states = {
 			intro: 0,
 			splash: 1,
@@ -136,15 +141,16 @@ class Game {
 		// TODO: refactor code from this function
 		this.scoreboard.showGameOverScore(); // <------- into this function in scoreboard
 
+		this.gameOver.loadGameOver();
 		// Should be refactored into a Scoreboard class.
-		var that = this;
+		/*var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
 		scoreboardEl.addClass('is-visible')
 					.find('.Scoreboard-restart')
 					.one('click', function() {
 						scoreboardEl.removeClass('is-visible');
 						that.reset();
-					});
+					});*/
 	}
 
 	play () {

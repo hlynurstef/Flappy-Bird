@@ -35,6 +35,7 @@
 }
 
 .Splash {
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin-top: 48em;
@@ -96,6 +97,7 @@
 	background: url(../images/flappybirdtext.png) no-repeat;
 	background-size: 100%;
 }
+
 .IntroPlay {
 	position: absolute;
 	width: 8.5em;
@@ -107,6 +109,61 @@
 	background: url(../images/play_button.png) no-repeat;
 	background-size: 100%;
 }
+
+.GameOver {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin-top: -48em;
+	box-sizing: border-box;
+	-webkit-transform: translateZ(0) translate(0, 0em);
+	-webkit-transition: -webkit-transform 0.5s;
+}
+
+/**
+* Reset transform to animate it into the correct spot on the screen.
+*/
+.GameOver.is-visible {
+	-webkit-transform: translateZ(0) translate(0, 48em);
+	-webkit-transition: -webkit-transform 0.5s;
+}
+
+.GameOverText {
+	position: absolute;
+	width: 16em;
+	height: 5em;
+	top: 50%;
+	left: 50%;
+	margin-left: -8em;
+	margin-top: -13em;
+	background: url(../images/gameovertext.png) no-repeat;
+	background-size: 100%;
+}
+
+.GameOverScorecard {
+	position: absolute;
+	width: 20em;
+	height: 12em;
+	top: 50%;
+	left: 50%;
+	margin-left: -10em;
+	margin-top: -4em;
+	background: url(../images/scoreboard.png) no-repeat;
+	background-size: 100%;
+}
+
+.GameOverPlay {
+	position: absolute;
+	width: 8.5em;
+	height: 5em;
+	top: 50%;
+	left: 50%;
+	margin-left: -10em;
+	margin-top: 9em;
+	background: url(../images/play_button.png) no-repeat;
+	background-size: 100%;
+}
+
 .Foreground2 {
 	position: absolute;
 	width: 32em;
