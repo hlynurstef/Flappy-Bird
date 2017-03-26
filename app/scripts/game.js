@@ -63,6 +63,8 @@ class Game {
 		this.img.src = '../images/sheet.png';
 		this.resizeGame();
 		this.gameSounds = new Game_Sounds();
+		this.topScore = 0;
+		this.currentScore = 0;
 	}
 
 	static get WORLD_WIDTH() { return WORLD_WIDTH; }
@@ -115,6 +117,7 @@ class Game {
 		this.pipes.reset();
 		this.splashScreen.show();
 		this.currentState = this.states.splash;
+		this.currentScore = 0;
 	}
 
 	/**
@@ -123,7 +126,10 @@ class Game {
 	gameover () {
 		//this.isPlaying = false;
 		this.currentState = this.states.gameover;
-
+		if(this.currentScore > this.topScore) {
+			this.topScore = this.currentScore;
+			console.log("NEW HIGH SCORE: " + this.topScore);
+		}
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
