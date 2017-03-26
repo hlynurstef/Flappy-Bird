@@ -94,9 +94,7 @@ class Scoreboard {
 			}
 		}
 		for (var i = 0; i < 3; i++) {
-			this.HighScoreEl[i].css('background', 'url(../images/numbers/' + score[i] + '.png) no-repeat');
-			this.HighScoreEl[i].css('background-size', 'auto 100%');
-			if(this.HighScoreEl[i].is(':hidden')) {
+			if(this.HighScoreEl[i].is(':visible')) {
 				this.HighScoreEl[i].hide();
 			}
 		}
