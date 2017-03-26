@@ -26,6 +26,7 @@ class Scoreboard {
 	reset () {
 		this.currentScore = 0;
 		this.hideLiveScore();
+		this.clearShowGameOverScore();
 	}
 
 	onFrame () {
@@ -83,6 +84,21 @@ class Scoreboard {
 	hideLiveScore() {
 		for (var i = 0; i < this.numberEl.length; i++) {
 			this.numberEl[i].hide();
+		}
+	}
+
+	clearShowGameOverScore() {
+		for (var i = 0; i < 3; i++) {
+			if(this.GameOverEl[i].is(':visible')) {
+				this.GameOverEl[i].hide();
+			}
+		}
+		for (var i = 0; i < 3; i++) {
+			this.HighScoreEl[i].css('background', 'url(../images/numbers/' + score[i] + '.png) no-repeat');
+			this.HighScoreEl[i].css('background-size', 'auto 100%');
+			if(this.HighScoreEl[i].is(':hidden')) {
+				this.HighScoreEl[i].hide();
+			}
 		}
 	}
 }
