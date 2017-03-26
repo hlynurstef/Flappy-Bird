@@ -235,7 +235,7 @@ class Player {
 
 		this.rotation = 0;
 		
-		if (this.controls.didJump()) {
+		if (this.controls.didJump() && !this.movingToStartPos) {
 			this.game.play();
 			this.jump();
 		}
