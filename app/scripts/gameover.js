@@ -20,5 +20,14 @@ class GameOver {
 			that.game.currentState = that.game.states.splash;
 			that.game.reset();
 		});
+
+		$('.ExitToIntro').one('click', function() {
+			that.hide();
+			that.game.currentState = that.game.states.intro;
+			that.game.firstPlay = true;
+			that.game.nightmareMode = false;
+			that.game.player.movingToStartPos = true;
+			that.game.reset();
+		});
 	}
 }

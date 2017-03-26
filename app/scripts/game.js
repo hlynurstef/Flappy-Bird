@@ -120,6 +120,12 @@ class Game {
 		if (this.nightmareMode) {
 			this.gameSounds.playNightmare();
 		}
+		else {
+			this.gameSounds.stopNightmare();
+			this.foreground.reset();
+			this.background.reset();
+			this.player.reset();
+		}
 
 		if (!this.firstPlay) {
 			this.player.reset();
@@ -132,6 +138,10 @@ class Game {
 		}
 		else {
 			this.firstPlay = false;
+			//this.player.reset();
+			//this.foreground.reset();
+			//this.background.reset();
+			this.pipes.reset();
 			this.scoreboard.reset();
 			this.introScreen.setIntroScreen();
 			this.currentState = this.states.intro;
@@ -162,7 +172,6 @@ class Game {
 	}
 
 	play () {
-		//this.isPlaying = true;
 		this.currentState = this.states.game;
 		this.splashScreen.hide();
 	}
