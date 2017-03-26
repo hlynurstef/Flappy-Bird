@@ -51,6 +51,7 @@ class Player {
 		this.upFlapSpeed = 0;
 		this.firstPlay = true;
 		this.gameOverLanding = false;
+		this.falling = false;
 		this.controls = new Controls(game);
 	}
 
@@ -60,6 +61,10 @@ class Player {
 	reset () {
 		this.pos.x = INITIAL_POSITION_X;
 		this.pos.y = INITIAL_POSITION_Y;
+		this.falling = false;
+		this.gameOverLanding = false;
+		this.rotation = 0;
+		this.velocity = 0;
 
 		if (this.firstPlay) {
 			this.firstPlay = false;
@@ -100,9 +105,14 @@ class Player {
 
 		if (this.game.currentState !== this.game.states.gameover) {
 			// Calculate speed of animation
-			var n = this.game.currentState === this.game.states.splash ? 10 : 5 + this.upFlapSpeed;
-			this.frame += this.game.frames % n === 0 ? 1 : 0;
-			this.frame %= this.animation.length;
+			if (!this.falling) {
+				var n = this.game.currentState === this.game.states.splash ? 10 : 5 + this.upFlapSpeed;
+				this.frame += this.game.frames % n === 0 ? 1 : 0;
+				this.frame %= this.animation.length;
+			}
+			else {
+				this.frame = 1;
+			}
 
 			// Get animation sprite and render it
 			var i = this.animation[this.frame];
@@ -123,16 +133,45 @@ class Player {
 
 			this.pos.y = this.game.WORLD_HEIGHT - HEIGHT;
 			if (this.game.currentState !== this.game.states.gameover) {
-				//this.jump();
-				this.gameOverLanding = true;
-				this.velocity = -this.jumpSpeed/1.5;
-				this.game.gameSounds.playSound('hit');
-				return this.game.gameover();
+				this.die();
 			}
 			else {
 				this.gameOverLanding = false;
 			}
 		}
+	}
+
+	checkPipeCollision () {
+		var pipe = this.game.pipes.pos[this.game.pipes.closestPipe];
+		var cx   = Math.min(Math.max(this.pos.x, pipe.x - (WIDTH/2)), pipe.x + this.game.pipes.width - (WIDTH/2));
+		var cy1  = Math.min(Math.max(this.pos.y, pipe.y + pipe.yOffset), pipe.y + this.game.pipes.height + pipe.yOffset - this.game.pipes.gap - (HEIGHT/2));
+		var cy2  = Math.min(Math.max(this.pos.y, pipe.y + this.game.pipes.height + pipe.yOffset - (HEIGHT/2)), pipe.y + 2*this.game.pipes.height + pipe.yOffset + this.game.pipes.gap);
+
+		// This shows you where the collision detection is exactly (top left corner of box)
+		// red
+		$('.NorthTarget').css('transform', 'translateZ(0) translate(' + (cx + (WIDTH/2)) + 'em, ' + (cy1 + (HEIGHT/2) - 2.1) + 'em)');
+		// green
+		$('.SouthTarget').css('transform', 'translateZ(0) translate(' + (cx + (WIDTH/2)) + 'em, ' + (cy2 + (HEIGHT/2)) + 'em)');
+		
+		var dx  = this.pos.x - cx;
+		var dy1 = this.pos.y - cy1;
+		var dy2 = this.pos.y - cy2;
+
+		var northPipeDistance = Math.sqrt((dx * dx) + (dy1 * dy1));
+		var southPipeDistance = Math.sqrt((dx * dx) + (dy2 * dy2));
+
+		var radius = (HEIGHT/2);
+		if(radius > northPipeDistance || radius > southPipeDistance) {
+			this.die();
+		}
+
+	}
+
+	die () {
+		this.gameOverLanding = true;
+		this.velocity = -this.jumpSpeed/1.5;
+		this.game.gameSounds.playSound('hit');
+		this.game.gameover();
 	}
 
 	jump () {
@@ -142,11 +181,15 @@ class Player {
 
 	rotate () {
 		// rotate down
+		if (this.velocity >= -0.6) {
+			this.falling = true;
+		}
 		if (this.velocity >= this.jumpSpeed) {
-			this.rotation = Math.min(Math.PI/2, this.rotation + 0.08);
+			this.rotation = Math.min(Math.PI/2, this.rotation + 0.1);
 		}
 		else { // rotate up
-			this.rotation = -0.25;
+			this.falling = false;
+			this.rotation = -(Math.PI / 8);
 		}
 	}
 
@@ -172,7 +215,8 @@ class Player {
 		this.velocity += this.gravity;
 		this.pos.y += this.velocity;
 
-		this.rotate();		
+		this.rotate();
+		this.checkPipeCollision();	
 	}
 
 	gameOverState () {

@@ -109,7 +109,7 @@
 	position: relative;
 	width: 100%;
 	height: 38.5em;
-	top: -10em;
+	top: -9em;
 	background: url(../images/pipenorth.png) no-repeat;
 	background-size: 100%;
 }
@@ -181,4 +181,22 @@ body {
 	margin-top: -24em;
 	overflow: hidden;
 	background: #70c5cf;
+}
+
+.NorthTarget {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0.2em;
+	height: 2em;
+	background: red;
+}
+
+.SouthTarget {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0.2em;
+	height: 2em;
+	background: red;
 }
