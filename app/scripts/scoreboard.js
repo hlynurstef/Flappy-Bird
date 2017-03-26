@@ -25,9 +25,8 @@ class Scoreboard {
 
 	reset () {
 		this.currentScore = 0;
-		for (var i = 0; i < this.numberEl.length; i++) {
-			this.numberEl[i].hide();
-		}
+		this.hideLiveScore();
+		this.clearShowGameOverScore();
 	}
 
 	onFrame () {
@@ -52,13 +51,15 @@ class Scoreboard {
 	}
 
 	showGameOverScore () {
-
+		this.hideLiveScore();
 		
 		if (this.currentScore > this.topScore) {
 			this.topScore = this.currentScore;
 			this.newLabelEl.css('background', 'url(../images/new.png) no-repeat');
+			this.newLabelEl.css('background-size', 'auto 100%');
 		} else {
 			this.newLabelEl.css('background', 'url() no-repeat');
+			this.newLabelEl.css('background-size', 'auto 100%');
 		}
 		
 		var score = this.currentScore.toString().split('');
@@ -76,6 +77,27 @@ class Scoreboard {
 			this.HighScoreEl[i].css('background-size', 'auto 100%');
 			if(this.HighScoreEl[i].is(':hidden')) {
 				this.HighScoreEl[i].show();
+			}
+		}
+	}
+
+	hideLiveScore() {
+		for (var i = 0; i < this.numberEl.length; i++) {
+			this.numberEl[i].hide();
+		}
+	}
+
+	clearShowGameOverScore() {
+		for (var i = 0; i < 3; i++) {
+			if(this.GameOverEl[i].is(':visible')) {
+				this.GameOverEl[i].hide();
+			}
+		}
+		for (var i = 0; i < 3; i++) {
+			this.HighScoreEl[i].css('background', 'url(../images/numbers/' + score[i] + '.png) no-repeat');
+			this.HighScoreEl[i].css('background-size', 'auto 100%');
+			if(this.HighScoreEl[i].is(':hidden')) {
+				this.HighScoreEl[i].hide();
 			}
 		}
 	}

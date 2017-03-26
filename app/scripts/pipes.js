@@ -1,6 +1,6 @@
 class Pipes {
 	constructor(el1,el2,el3,game) {
-		this.speed = 6.4;
+		this.speed = 8;
 		this.el = [
 			el1,
 			el2,
@@ -59,7 +59,7 @@ class Pipes {
 			this.north.css('background-size', '100%');
 			this.south.css('background', 'url(' + this.pipes[0][1] + ') no-repeat');
 			this.south.css('background-size', '100%');
-			this.speed = 6.4;
+			this.speed = 8;
 		}
 
 		var first  = this.getHeight(),
