@@ -67,7 +67,10 @@ class Game {
 		this.WORLD_HEIGHT = 38;
 
 		this.resizeGame();
-		this.gameSounds = new Game_Sounds();
+		this.gameSounds = new Game_Sounds(
+			this.el.find('.musicToggle'),
+			this
+		);
 	}
 
 	static get WORLD_WIDTH() { return WORLD_WIDTH; }

@@ -1,5 +1,7 @@
 class Game_Sounds {
-	constructor() {
+	constructor (el, game) {
+        this.el = el;
+		this.game = game;
 		this.channel_max = 6;	// number of channels 
 		this.c = 0;				// number of the next free channel 
 		this.audiochannels = new Array(); 
@@ -10,6 +12,8 @@ class Game_Sounds {
 		this.mute = false;
 		this.nightmareTheme = new Audio('../sounds/nightmare_theme.mp3');
 		this.playingTheme = false;
+
+		this.muteAudioListener();
 	}
 
 	playSound(s) { 
@@ -27,20 +31,48 @@ class Game_Sounds {
 
 	toggleAudio() {
 		this.mute = !this.mute;
+		if (this.game.nightmareMode) {
+			if(this.mute) {
+				this.stopNightmare();
+			} else {
+				this.playNightmare();
+			}
+		}
 	}
 
 	playNightmare() {
-		this.playingTheme = true;
-		this.nightmareTheme.addEventListener('ended', function() {
-			this.currentTime = 0;
-			this.play();
-		}, false);
-		this.nightmareTheme.play();
+		if(!this.mute) {
+			this.playingTheme = true;
+			this.nightmareTheme.addEventListener('ended', function() {
+				this.currentTime = 0;
+				this.play();
+			}, false);
+			this.nightmareTheme.play();
+		}
 	}
 
 	stopNightmare() {
 		this.nightmareTheme.pause();
 		this.nightmareTheme.currentTime = 0;
+	}
+
+	muteAudioListener() {
+		let that = this;
+		$('#toggleImage').on('click', function() {
+			console.log("mute before: " + that.mute);
+			that.toggleAudio();
+			console.log("mute after: " + that.mute);
+			if(that.mute) {
+				$(this).css('background', 'url(../images/unmute_button.png) no-repeat');
+				$(this).css('background-size', 'auto 100%');
+				console.log("Muting, setting unmute button");
+			}
+			else {
+				$(this).css('background', 'url(../images/mute_button.png) no-repeat');
+				$(this).css('background-size', 'auto 100%');
+				console.log("unMuting, setting mute button");
+			}
+		});
 	}
 }
 
