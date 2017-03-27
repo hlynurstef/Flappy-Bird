@@ -175,7 +175,7 @@ class Player {
 
 		var radius = (HEIGHT/2);
 		if(radius > northPipeDistance || radius > southPipeDistance) {
-			this.die();
+			this.die(true);
 		}
 
 	}
@@ -210,10 +210,16 @@ class Player {
 		}
 	}
 
-	die () {
+	die (pipe) {
 		this.gameOverLanding = true;
 		this.velocity = -this.jumpSpeed/1.5;
-		this.game.gameSounds.playSound('hitNfall');
+		if (pipe) {
+			this.game.gameSounds.playSound('hitNfall');
+		}
+		else {
+			this.game.gameSounds.playSound('hit');
+		}
+		
 		this.game.gameover();
 		$('.NorthTarget').hide();
 		$('.SouthTarget').hide();
