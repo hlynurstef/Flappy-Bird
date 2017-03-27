@@ -102,13 +102,13 @@ class Scoreboard {
 			this.medal.show();
 			console.log('showing bronse medal');
 			console.log(this.medal);
-			this.medal.css('background', 'url(../images/bronse.png) no-repeat');
+			this.medal.css('background', 'url(./images/bronse.png) no-repeat');
 			this.medal.css('background-size', '100%');
 		}
 		else if (this.currentScore >= 20 && this.currentScore <= 29) {
 			this.medal.show();
 			console.log('showing silver medal');
-			this.medal.css('background', 'url(../images/silver.png) no-repeat');
+			this.medal.css('background', 'url(./images/silver.png) no-repeat');
 			this.medal.css('background-size', '100%');
 		}
 		else if (this.currentScore >= 30 && this.currentScore <= 39) {
