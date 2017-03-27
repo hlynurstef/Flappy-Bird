@@ -304,29 +304,22 @@ body {
 
 .NorthTarget {
 	position: absolute;
+	display: none;
 	top: 0;
 	left: 0;
 	width: 0.2em;
 	height: 2em;
-	background: red;
+	background: yellow;
 }
 
 .SouthTarget {
 	position: absolute;
+	display: none;
 	top: 0;
 	left: 0;
 	width: 0.2em;
 	height: 2em;
-	background: red;
-}
-
-.BirdTarget {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 3em;
-	height: 2.2em;
-	background: red;
+	background: yellow;
 }
 
 .Score {

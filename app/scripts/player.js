@@ -119,7 +119,7 @@ class Player {
 			// Calculate speed of animation
 			if (!this.falling) {
 				var n = (this.game.currentState === this.game.states.splash ||
-						 this.game.currentState === this.game.states.intro) ? 30 : 5 + this.upFlapSpeed;
+						 this.game.currentState === this.game.states.intro) ? 15 : 5 + this.upFlapSpeed;
 				this.frame += this.game.frames % n === 0 ? 1 : 0;
 				this.frame %= this.animation.length;
 			}
@@ -156,15 +156,15 @@ class Player {
 
 	checkPipeCollision () {
 		var pipe = this.game.pipes.pos[this.game.pipes.closestPipe];
+		
+		// Closest x coordinate
 		var cx   = Math.min(Math.max(this.pos.x, pipe.x - (WIDTH/2)), pipe.x + this.game.pipes.width - (WIDTH/2));
+		// Closest y coordinate of north pipe
 		var cy1  = Math.min(Math.max(this.pos.y, pipe.y + pipe.yOffset), pipe.y + this.game.pipes.height + pipe.yOffset - this.game.pipes.gap - (HEIGHT/2));
+		// Closest y coordinate of south pipe
 		var cy2  = Math.min(Math.max(this.pos.y, pipe.y + this.game.pipes.height + pipe.yOffset - (HEIGHT/2)), pipe.y + 2*this.game.pipes.height + pipe.yOffset + this.game.pipes.gap);
 
-		// This shows you where the collision detection is exactly (top left corner of box)
-		// red
-		$('.NorthTarget').css('transform', 'translateZ(0) translate(' + (cx + (WIDTH/2)) + 'em, ' + (cy1 + (HEIGHT/2) - 2.1) + 'em)');
-		// green
-		$('.SouthTarget').css('transform', 'translateZ(0) translate(' + (cx + (WIDTH/2)) + 'em, ' + (cy2 + (HEIGHT/2)) + 'em)');
+		this.showCollisionDetection(cx, cy1, cy2);
 		
 		var dx  = this.pos.x - cx;
 		var dy1 = this.pos.y - cy1;
@@ -180,6 +180,28 @@ class Player {
 
 	}
 
+	showCollisionDetection (cx, cy1, cy2) {
+		let northTarget = $('.NorthTarget');
+		let southTarget = $('.SouthTarget');
+		if (this.controls.showCollisions) {
+			if (northTarget.is(':hidden') || southTarget.is(':hidden')) {
+				northTarget.show();
+				southTarget.show();
+			}
+			// This shows you where the collision detection is exactly (top left corner of box)
+			// red
+			northTarget.css('transform', 'translateZ(0) translate(' + (cx + (WIDTH/2)) + 'em, ' + (cy1 + (HEIGHT/2) - 2.1) + 'em)');
+			// green
+			southTarget.css('transform', 'translateZ(0) translate(' + (cx + (WIDTH/2)) + 'em, ' + (cy2 + (HEIGHT/2)) + 'em)');
+		}
+		else {
+			if (northTarget.is(':visible') || southTarget.is(':visible')) {
+				northTarget.hide();
+				southTarget.hide();
+			}
+		}
+	}
+
 	checkIfThroughPipe () {
 		var pipe = this.game.pipes.pos[this.game.pipes.closestPipe];
 		if ( this.pos.x + (WIDTH/2) >= pipe.x + (this.game.pipes.width/2) && pipe != this.currentPipe) {
@@ -193,6 +215,8 @@ class Player {
 		this.velocity = -this.jumpSpeed/1.5;
 		this.game.gameSounds.playSound('hitNfall');
 		this.game.gameover();
+		$('.NorthTarget').hide();
+		$('.SouthTarget').hide();
 	}
 
 	jump () {
@@ -228,7 +252,6 @@ class Player {
 			let ratio = SPEED / distance;
 			this.pos.x -= ratio/30;
 			this.pos.y += ratio/60;
-			$('.BirdTarget').css('transform', 'translateZ(0) translate(' + INITIAL_POSITION_X + 'em, ' + (this.game.WORLD_WIDTH - 18) + 'em)');
 
 			if(this.pos.x <= INITIAL_POSITION_X &&
 				this.pos.y >= this.game.WORLD_HEIGHT - 18) {

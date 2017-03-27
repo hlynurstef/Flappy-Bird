@@ -59,18 +59,14 @@ class Game_Sounds {
 	muteAudioListener() {
 		let that = this;
 		$('#toggleImage').on('click', function() {
-			console.log("mute before: " + that.mute);
 			that.toggleAudio();
-			console.log("mute after: " + that.mute);
 			if(that.mute) {
 				$(this).css('background', 'url(../images/unmute_button.png) no-repeat');
 				$(this).css('background-size', 'auto 100%');
-				console.log("Muting, setting unmute button");
 			}
 			else {
 				$(this).css('background', 'url(../images/mute_button.png) no-repeat');
 				$(this).css('background-size', 'auto 100%');
-				console.log("unMuting, setting mute button");
 			}
 		});
 	}

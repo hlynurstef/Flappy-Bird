@@ -21,6 +21,7 @@ class Controls {
     constructor (game) {
         this.game = game;
         this._didJump = false;
+        this.showCollisions = false;
         this.keys = {};
         $(window).on('keydown', this._onKeyDown.bind(this))
                     .on('keyup', this._onKeyUp.bind(this));
@@ -29,12 +30,14 @@ class Controls {
     }
 
     _onKeyDown (e) {
+        if (e.keyCode == 67) {
+            this.showCollisions = !this.showCollisions;
+        }
         if (this.game.currentState !== this.game.states.gameover) {
             // Only jump if space wasn't pressed.
             if (e.keyCode === 32 && !this.keys.space) {
                 this._didJump = true;
             }
-
             // Remember that this button is down.
             if (e.keyCode in KEYS) {
                 var keyName = KEYS[e.keyCode];
