@@ -18,19 +18,19 @@ class Player {
 
 		this.sprites = {
 			yellow: [
-				'../images/bird_yellow_1.png',
-				'../images/bird_yellow_2.png',
-				'../images/bird_yellow_3.png'
+				'/images/bird_yellow_1.png',
+				'/images/bird_yellow_2.png',
+				'/images/bird_yellow_3.png'
 			],
 			blue: [
-				'../images/bird_blue_1.png',
-				'../images/bird_blue_2.png',
-				'../images/bird_blue_3.png'
+				'/images/bird_blue_1.png',
+				'/images/bird_blue_2.png',
+				'/images/bird_blue_3.png'
 			],
 			red: [
-				'../images/bird_red_1.png',
-				'../images/bird_red_2.png',
-				'../images/bird_red_3.png'
+				'/images/bird_red_1.png',
+				'/images/bird_red_2.png',
+				'/images/bird_red_3.png'
 			]
 		}
 		this.currentImage = this.sprites.yellow;
@@ -175,7 +175,7 @@ class Player {
 
 		var radius = (HEIGHT/2);
 		if(radius > northPipeDistance || radius > southPipeDistance) {
-			this.die();
+			this.die(true);
 		}
 
 	}
@@ -210,10 +210,16 @@ class Player {
 		}
 	}
 
-	die () {
+	die (pipe) {
 		this.gameOverLanding = true;
 		this.velocity = -this.jumpSpeed/1.5;
-		this.game.gameSounds.playSound('hitNfall');
+		if (pipe) {
+			this.game.gameSounds.playSound('hitNfall');
+		}
+		else {
+			this.game.gameSounds.playSound('hit');
+		}
+		
 		this.game.gameover();
 		$('.NorthTarget').hide();
 		$('.SouthTarget').hide();

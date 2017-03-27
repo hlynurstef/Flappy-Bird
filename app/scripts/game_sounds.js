@@ -10,7 +10,7 @@ class Game_Sounds {
 			this.audiochannels[a]['channel'] = new Audio();				// expected end time for this channel
 		}
 		this.mute = false;
-		this.nightmareTheme = new Audio('../sounds/nightmare_theme.mp3');
+		this.nightmareTheme = new Audio('/sounds/nightmare_theme.mp3');
 		this.playingTheme = false;
 
 		this.muteAudioListener();
@@ -61,11 +61,11 @@ class Game_Sounds {
 		$('#toggleImage').on('click', function() {
 			that.toggleAudio();
 			if(that.mute) {
-				$(this).css('background', 'url(../images/unmute_button.png) no-repeat');
+				$(this).css('background', 'url(/images/unmute_button.png) no-repeat');
 				$(this).css('background-size', 'auto 100%');
 			}
 			else {
-				$(this).css('background', 'url(../images/mute_button.png) no-repeat');
+				$(this).css('background', 'url(/images/mute_button.png) no-repeat');
 				$(this).css('background-size', 'auto 100%');
 			}
 		});
