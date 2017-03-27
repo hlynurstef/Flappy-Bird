@@ -1011,7 +1011,7 @@ class Game_Sounds {
 			this.audiochannels[a]['channel'] = new Audio();				// expected end time for this channel
 		}
 		this.mute = false;
-		this.nightmareTheme = new Audio('/sounds/nightmare_theme.mp3');
+		this.nightmareTheme = new Audio('./sounds/nightmare_theme.mp3');
 		this.playingTheme = false;
 
 		this.muteAudioListener();
