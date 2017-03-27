@@ -7,11 +7,17 @@ This is a clone of the famous Flappy Bird game written in HTML5, CSS3 and JavaSc
 * 480x320 pixel game canvas that resizes with the browser window.
 * All positions and sizes defined using a 10px em. This means that the game could be scaled up and down by changing the base font-size.
 
+## Controls
+
+* Jump: Space/Mouseclick/Tap
+* Mute: M
+* Collision Visualization: C
+
 ## How to play
 
-* Use the space bar to make the bird jump.
+* Make the bird jump.
 * Don't hit the pipes or the ground.
-* Remain calm.
+* Remain calm and have fun!
 
 ## Music
 
@@ -25,8 +31,7 @@ bower install
 grunt serve
 ```
 
-
-### extra points ###
+### Extra points ###
 * Random background  (night / day)
 * Random bird color
 * Bird bounces if he hits an obstacle
