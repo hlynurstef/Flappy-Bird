@@ -33,7 +33,7 @@ class Scoreboard {
 		if (this.game.currentState === this.game.states.game) {
 			var score = this.currentScore.toString().split('');
 			for (var i = 0; i < score.length; i++) {
-				this.numberEl[i].css('background', 'url(../images/numbers/' + score[i] + '.png) no-repeat');
+				this.numberEl[i].css('background', 'url(/images/numbers/' + score[i] + '.png) no-repeat');
 				this.numberEl[i].css('background-size', 'auto 100%');
 				if(this.numberEl[i].is(':hidden')) {
 					this.numberEl[i].show();
@@ -55,7 +55,7 @@ class Scoreboard {
 		
 		if (this.currentScore > this.topScore) {
 			this.topScore = this.currentScore;
-			this.newLabelEl.css('background', 'url(../images/new.png) no-repeat');
+			this.newLabelEl.css('background', 'url(/images/new.png) no-repeat');
 			this.newLabelEl.css('background-size', 'auto 100%');
 		} else {
 			this.newLabelEl.css('background', 'url() no-repeat');
@@ -64,7 +64,7 @@ class Scoreboard {
 		
 		var score = this.currentScore.toString().split('');
 		for (var i = 0; i < score.length; i++) {
-			this.GameOverEl[i].css('background', 'url(../images/numbers/' + score[i] + '.png) no-repeat');
+			this.GameOverEl[i].css('background', 'url(/images/numbers/' + score[i] + '.png) no-repeat');
 			this.GameOverEl[i].css('background-size', 'auto 100%');
 			if(this.GameOverEl[i].is(':hidden')) {
 				this.GameOverEl[i].show();
@@ -73,7 +73,7 @@ class Scoreboard {
 
 		score = this.topScore.toString().split('');
 		for (var i = 0; i < score.length; i++) {
-			this.HighScoreEl[i].css('background', 'url(../images/numbers/' + score[i] + '.png) no-repeat');
+			this.HighScoreEl[i].css('background', 'url(/images/numbers/' + score[i] + '.png) no-repeat');
 			this.HighScoreEl[i].css('background-size', 'auto 100%');
 			if(this.HighScoreEl[i].is(':hidden')) {
 				this.HighScoreEl[i].show();

@@ -1,7 +1,3 @@
-
-/**
- * Bootstrap and start the game.
- */
 $(function() {
     'use strict';
 

@@ -5,9 +5,9 @@ class Background {
 		this.el2 = el2;
 		this.game = game;
 		this.backgrounds = [
-			'../images/background_day.png',
-			'../images/background_night.png',
-			'../images/background_nightmare.png'
+			'/images/background_day.png',
+			'/images/background_night.png',
+			'/images/background_nightmare.png'
 		];
 		this.currentImage = this.backgrounds[0];
 		this.stuff = 0;

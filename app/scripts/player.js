@@ -18,19 +18,19 @@ class Player {
 
 		this.sprites = {
 			yellow: [
-				'../images/bird_yellow_1.png',
-				'../images/bird_yellow_2.png',
-				'../images/bird_yellow_3.png'
+				'/images/bird_yellow_1.png',
+				'/images/bird_yellow_2.png',
+				'/images/bird_yellow_3.png'
 			],
 			blue: [
-				'../images/bird_blue_1.png',
-				'../images/bird_blue_2.png',
-				'../images/bird_blue_3.png'
+				'/images/bird_blue_1.png',
+				'/images/bird_blue_2.png',
+				'/images/bird_blue_3.png'
 			],
 			red: [
-				'../images/bird_red_1.png',
-				'../images/bird_red_2.png',
-				'../images/bird_red_3.png'
+				'/images/bird_red_1.png',
+				'/images/bird_red_2.png',
+				'/images/bird_red_3.png'
 			]
 		}
 		this.currentImage = this.sprites.yellow;

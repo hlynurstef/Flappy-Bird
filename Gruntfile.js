@@ -313,7 +313,10 @@ module.exports = function (grunt) {
                         '.htaccess',
                         'images/{,*/}*.webp',
                         '{,*/}*.html',
-                        'styles/fonts/{,*/}*.*'
+                        'styles/fonts/{,*/}*.*',
+                        'sounds/*.*',
+                        'images/*.*',
+                        'images/numbers/*.*'
                     ]
                 }]
             },
@@ -338,12 +341,20 @@ module.exports = function (grunt) {
             dist: [
                 //'compass',
                 'copy:styles',
-                'imagemin',
+                //'imagemin',
                 'svgmin'
             ]
+        },
+
+        'gh-pages': {
+            options: {
+                base: 'dist'
+            },
+            src: ['**']
         }
     });
 
+    grunt.loadNpmTasks('grunt-gh-pages');
 
     grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
