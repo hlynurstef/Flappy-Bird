@@ -14,8 +14,8 @@ class Foreground {
 		};
 
 		this.foregrounds = [
-			'/images/foreground.png',
-			'/images/foreground_nightmare.png'
+			'./images/foreground.png',
+			'./images/foreground_nightmare.png'
 		];
 	}
 

@@ -197,19 +197,19 @@ module.exports = function (grunt) {
         },
 
         // Renames files for browser caching purposes
-        rev: {
-            dist: {
-                files: {
-                    src: [
-                        '<%= config.dist %>/scripts/{,*/}*.js',
-                        '<%= config.dist %>/styles/{,*/}*.css',
-                        '<%= config.dist %>/images/{,*/}*.*',
-                        '<%= config.dist %>/styles/fonts/{,*/}*.*',
-                        '<%= config.dist %>/*.{ico,png}'
-                    ]
-                }
-            }
-        },
+        //rev: {
+        //    dist: {
+        //        files: {
+        //            src: [
+        //                '<%= config.dist %>/scripts/{,*/}*.js',
+        //                '<%= config.dist %>/styles/{,*/}*.css',
+        //                '<%= config.dist %>/images/{,*/}*.*',
+        //                '<%= config.dist %>/styles/fonts/{,*/}*.*',
+        //                '<%= config.dist %>/*.{ico,png}'
+        //            ]
+        //        }
+        //    }
+        //},
 
         // Reads HTML for usemin blocks to enable smart builds that automatically
         // concat, minify and revision files. Creates configurations in memory so
@@ -231,16 +231,16 @@ module.exports = function (grunt) {
         },
 
         // The following *-min tasks produce minified files in the dist folder
-        imagemin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.app %>/images',
-                    src: '{,*/}*.{gif,jpeg,jpg,png}',
-                    dest: '<%= config.dist %>/images'
-                }]
-            }
-        },
+        //imagemin: {
+        //    dist: {
+        //        files: [{
+        //            expand: true,
+        //            cwd: '<%= config.app %>/images',
+        //            src: '{,*/}*.{gif,jpeg,jpg,png}',
+        //            dest: '<%= config.dist %>/images'
+        //        }]
+        //    }
+        //},
 
         svgmin: {
             dist: {

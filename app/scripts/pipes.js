@@ -9,11 +9,11 @@ class Pipes {
 
 		this.pipes = [
 			[
-				'/images/pipenorth.png',
-				'/images/pipesouth.png'
+				'./images/pipenorth.png',
+				'./images/pipesouth.png'
 			], [
-				'/images/pipenorth_nightmare.png',
-				'/images/pipesouth_nightmare.png'
+				'./images/pipenorth_nightmare.png',
+				'./images/pipesouth_nightmare.png'
 			]
 		];
 
