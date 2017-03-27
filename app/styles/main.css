@@ -320,6 +320,15 @@ body {
 	background: red;
 }
 
+.BirdTarget {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3em;
+	height: 2.2em;
+	background: red;
+}
+
 .Score {
 	display: flex;
 	justify-content: center;

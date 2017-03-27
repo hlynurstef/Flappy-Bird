@@ -118,7 +118,8 @@ class Player {
 		if (this.game.currentState !== this.game.states.gameover) {
 			// Calculate speed of animation
 			if (!this.falling) {
-				var n = this.game.currentState === this.game.states.splash ? 10 : 5 + this.upFlapSpeed;
+				var n = (this.game.currentState === this.game.states.splash ||
+						 this.game.currentState === this.game.states.intro) ? 30 : 5 + this.upFlapSpeed;
 				this.frame += this.game.frames % n === 0 ? 1 : 0;
 				this.frame %= this.animation.length;
 			}
@@ -227,8 +228,9 @@ class Player {
 			let ratio = SPEED / distance;
 			this.pos.x -= ratio/30;
 			this.pos.y += ratio/60;
+			$('.BirdTarget').css('transform', 'translateZ(0) translate(' + INITIAL_POSITION_X + 'em, ' + (this.game.WORLD_WIDTH - 18) + 'em)');
 
-			if(this.pos.x <= INITIAL_POSITION_X ||
+			if(this.pos.x <= INITIAL_POSITION_X &&
 				this.pos.y >= this.game.WORLD_HEIGHT - 18) {
 				this.movingToStartPos = false;
 			}	

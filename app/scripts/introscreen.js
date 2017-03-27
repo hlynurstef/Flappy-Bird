@@ -18,7 +18,8 @@ class IntroScreen {
 		$('.IntroPlay').one('click', function() {
 			that.hide();
 			that.game.currentState = that.game.states.splash;
-			that.game.reset();
+			that.game.splashScreen.show();
+			//that.game.reset();
 		});
 
 		$('.IntroNightmare').one('click', function() {
