@@ -18,8 +18,11 @@ class Scoreboard {
 			this.gameOverEl.find('#HighScoreHundred')
 		]
 		this.newLabelEl = this.gameOverEl.find('.newLabel');
+		this.medal = this.gameOverEl.find('.Medal');
 		this.game = game;
 		this.topScore = 0;
+		this.regularTopScore = 0;
+		this.nightmareTopScore = 0;
 		this.currentScore = 0;
 	}
 
@@ -52,7 +55,16 @@ class Scoreboard {
 
 	showGameOverScore () {
 		this.hideLiveScore();
-		
+		this.showMedal();
+
+		if (this.game.nightmareMode) {
+			this.topScore = this.nightmareTopScore;
+			this.nightmareTopScore = (this.currentScore > this.nightmareTopScore) ? this.currentScore : this.nightmareTopScore;
+		} else {
+			this.topScore = this.regularTopScore;
+			this.regularTopScore = (this.currentScore > this.regularTopScore) ? this.currentScore : this.regularTopScore;
+		}
+
 		if (this.currentScore > this.topScore) {
 			this.topScore = this.currentScore;
 			this.newLabelEl.css('background', 'url(./images/new.png) no-repeat');
@@ -79,6 +91,37 @@ class Scoreboard {
 			if(this.HighScoreEl[i].is(':hidden')) {
 				this.HighScoreEl[i].show();
 			}
+		}
+	}
+
+	showMedal() {
+		if (this.currentScore < 10) {
+			this.medal.hide();
+		}
+		else if (this.currentScore >= 10 && this.currentScore <= 19) {
+			this.medal.show();
+			console.log('showing bronse medal');
+			console.log(this.medal);
+			this.medal.css('background', 'url(../images/bronse.png) no-repeat');
+			this.medal.css('background-size', '100%');
+		}
+		else if (this.currentScore >= 20 && this.currentScore <= 29) {
+			this.medal.show();
+			console.log('showing silver medal');
+			this.medal.css('background', 'url(../images/silver.png) no-repeat');
+			this.medal.css('background-size', '100%');
+		}
+		else if (this.currentScore >= 30 && this.currentScore <= 39) {
+			this.medal.show();
+			console.log('showing gold medal');
+			this.medal.css('background', 'url(./images/gold.png) no-repeat');
+			this.medal.css('background-size', '100%');
+		}
+		else if (this.currentScore >= 40 && this.currentScore <= 49) {
+			this.medal.show();
+			console.log('showing platinum medal');
+			this.medal.css('background', 'url(./images/platinum.png) no-repeat');
+			this.medal.css('background-size', '100%');
 		}
 	}
 

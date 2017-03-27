@@ -171,6 +171,16 @@
 	background-size: 100%;
 }
 
+.Medal {
+	position: absolute;
+	width: 4em;
+	height: 4em;
+	top: 4.3em;
+    left: 2.65em;
+	background: url(../images/bronse.png) no-repeat;
+	background-size: 100%;
+}
+
 .CurrentScore {
 	display: flex;
 	flex-direction: row-reverse;
