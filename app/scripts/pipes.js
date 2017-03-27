@@ -52,7 +52,7 @@ class Pipes {
 			this.north.css('background-size', '100%');
 			this.south.css('background', 'url(' + this.pipes[1][1] + ') no-repeat');
 			this.south.css('background-size', '100%');
-			this.speed = 14;
+			this.speed = 12;
 		}
 		else {
 			this.north.css('background', 'url(' + this.pipes[0][0] + ') no-repeat');

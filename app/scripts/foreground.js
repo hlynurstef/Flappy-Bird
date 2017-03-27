@@ -25,7 +25,7 @@ class Foreground {
 			this.el1.css('background-size', '100%');
 			this.el2.css('background', 'url(' + this.foregrounds[1] + ') no-repeat');
 			this.el2.css('background-size', '100%');
-			this.speed = 14;
+			this.speed = 12;
 		}
 		else {
 			this.el1.css('background', 'url(' + this.foregrounds[0] + ') no-repeat');

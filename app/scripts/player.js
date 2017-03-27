@@ -57,7 +57,7 @@ class Player {
 	 */
 	reset () {
 		if (this.game.nightmareMode) {
-			this.jumpSpeed = 0.35;
+			this.jumpSpeed = 0.37;
 		}
 		else {
 			this.jumpSpeed = 0.52;
