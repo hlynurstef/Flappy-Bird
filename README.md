@@ -31,4 +31,5 @@ grunt serve
 * Random bird color
 * Bird bounces if he hits an obstacle
 * Circle-Rectangle collision calculations by calculating the distance to the closest points on the pipes and checking if they intersect with the circle area of the bird (function checkPipeCollision() in player.js)
+* Press C on your keyboard to see the collision detection in action!
 * Nightmare mode!
