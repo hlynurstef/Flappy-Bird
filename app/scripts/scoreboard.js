@@ -31,7 +31,7 @@ class Scoreboard {
 
 	onFrame () {
 		if (this.game.currentState === this.game.states.game) {
-			var score = this.currentScore.toString().split('');
+			var score = this.currentScore.toString().split('').reverse();
 			for (var i = 0; i < score.length; i++) {
 				this.numberEl[i].css('background', 'url(/images/numbers/' + score[i] + '.png) no-repeat');
 				this.numberEl[i].css('background-size', 'auto 100%');
@@ -62,7 +62,7 @@ class Scoreboard {
 			this.newLabelEl.css('background-size', 'auto 100%');
 		}
 		
-		var score = this.currentScore.toString().split('');
+		var score = this.currentScore.toString().split('').reverse();
 		for (var i = 0; i < score.length; i++) {
 			this.GameOverEl[i].css('background', 'url(/images/numbers/' + score[i] + '.png) no-repeat');
 			this.GameOverEl[i].css('background-size', 'auto 100%');
@@ -71,7 +71,8 @@ class Scoreboard {
 			}
 		}
 
-		score = this.topScore.toString().split('');
+		score = this.topScore.toString().split('').reverse();
+		
 		for (var i = 0; i < score.length; i++) {
 			this.HighScoreEl[i].css('background', 'url(/images/numbers/' + score[i] + '.png) no-repeat');
 			this.HighScoreEl[i].css('background-size', 'auto 100%');
