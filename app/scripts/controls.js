@@ -33,6 +33,11 @@ class Controls {
         if (e.keyCode == 67) {
             this.showCollisions = !this.showCollisions;
         }
+
+        if (e.keyCode == 77) {
+            this.game.gameSounds.toggleAudio();
+        }
+
         if (this.game.currentState !== this.game.states.gameover) {
             // Only jump if space wasn't pressed.
             if (e.keyCode === 32 && !this.keys.space) {
