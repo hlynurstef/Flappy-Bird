@@ -16,6 +16,7 @@ if (!window.requestAnimationFrame) {
 }
 
 $(window).resize(function() {
+    'use strict';
 	var fontSize = Math.min(
         window.innerWidth / 32,
         window.innerHeight / 48

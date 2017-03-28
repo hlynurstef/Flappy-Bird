@@ -32,7 +32,7 @@ class Player {
 				'./images/bird_red_2.png',
 				'./images/bird_red_3.png'
 			]
-		}
+		};
 		this.currentImage = this.sprites.yellow;
 
 		this.animation = [0,1,2,1];
@@ -89,6 +89,7 @@ class Player {
 					break;
 				case 2:
 					this.currentImage = this.sprites.red;
+					break;
 				default:
 					break;
 			}
@@ -204,7 +205,7 @@ class Player {
 
 	checkIfThroughPipe () {
 		var pipe = this.game.pipes.pos[this.game.pipes.closestPipe];
-		if ( this.pos.x + (WIDTH/2) >= pipe.x + (this.game.pipes.width/2) && pipe != this.currentPipe) {
+		if ( this.pos.x + (WIDTH/2) >= pipe.x + (this.game.pipes.width/2) && pipe !== this.currentPipe) {
 			this.game.scoreboard.addScore();
 			this.currentPipe = pipe;
 		}

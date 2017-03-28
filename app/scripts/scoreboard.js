@@ -11,12 +11,12 @@ class Scoreboard {
 			this.gameOverEl.find('#GameOverDigit'),
 			this.gameOverEl.find('#GameOverTen'),
 			this.gameOverEl.find('#GameOverHundred')
-		]
+		];
 		this.HighScoreEl = [
 			this.gameOverEl.find('#HighScoreDigit'),
 			this.gameOverEl.find('#HighScoreTen'),
 			this.gameOverEl.find('#HighScoreHundred')
-		]
+		];
 		this.newLabelEl = this.gameOverEl.find('.newLabel');
 		this.medal = this.gameOverEl.find('.Medal');
 		this.game = game;

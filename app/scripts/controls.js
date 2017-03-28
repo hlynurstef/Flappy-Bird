@@ -30,11 +30,11 @@ class Controls {
     }
 
     _onKeyDown (e) {
-        if (e.keyCode == 67) {
+        if (e.keyCode === 67) {
             this.showCollisions = !this.showCollisions;
         }
 
-        if (e.keyCode == 77) {
+        if (e.keyCode === 77) {
             this.game.gameSounds.toggleAudio();
         }
 

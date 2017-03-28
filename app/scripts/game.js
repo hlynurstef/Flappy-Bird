@@ -67,7 +67,7 @@ class Game {
 		this.WORLD_HEIGHT = 38;
 
 		this.resizeGame();
-		this.gameSounds = new Game_Sounds(
+		this.gameSounds = new GameSounds(
 			this.el.find('.musicToggle'),
 			this
 		);
