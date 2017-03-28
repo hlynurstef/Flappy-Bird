@@ -23,6 +23,7 @@ if (!window.requestAnimationFrame) {
 }
 
 $(window).resize(function() {
+    'use strict';
 	var fontSize = Math.min(
         window.innerWidth / 32,
         window.innerHeight / 48
@@ -62,11 +63,11 @@ class Controls {
     }
 
     _onKeyDown (e) {
-        if (e.keyCode == 67) {
+        if (e.keyCode === 67) {
             this.showCollisions = !this.showCollisions;
         }
 
-        if (e.keyCode == 77) {
+        if (e.keyCode === 77) {
             this.game.gameSounds.toggleAudio();
         }
 
@@ -404,12 +405,12 @@ class Scoreboard {
 			this.gameOverEl.find('#GameOverDigit'),
 			this.gameOverEl.find('#GameOverTen'),
 			this.gameOverEl.find('#GameOverHundred')
-		]
+		];
 		this.HighScoreEl = [
 			this.gameOverEl.find('#HighScoreDigit'),
 			this.gameOverEl.find('#HighScoreTen'),
 			this.gameOverEl.find('#HighScoreHundred')
-		]
+		];
 		this.newLabelEl = this.gameOverEl.find('.newLabel');
 		this.medal = this.gameOverEl.find('.Medal');
 		this.game = game;
@@ -614,7 +615,7 @@ class Game {
 		this.WORLD_HEIGHT = 38;
 
 		this.resizeGame();
-		this.gameSounds = new Game_Sounds(
+		this.gameSounds = new GameSounds(
 			this.el.find('.musicToggle'),
 			this
 		);
@@ -767,7 +768,7 @@ class Player {
 				'./images/bird_red_2.png',
 				'./images/bird_red_3.png'
 			]
-		}
+		};
 		this.currentImage = this.sprites.yellow;
 
 		this.animation = [0,1,2,1];
@@ -824,6 +825,7 @@ class Player {
 					break;
 				case 2:
 					this.currentImage = this.sprites.red;
+					break;
 				default:
 					break;
 			}
@@ -939,7 +941,7 @@ class Player {
 
 	checkIfThroughPipe () {
 		var pipe = this.game.pipes.pos[this.game.pipes.closestPipe];
-		if ( this.pos.x + (WIDTH/2) >= pipe.x + (this.game.pipes.width/2) && pipe != this.currentPipe) {
+		if ( this.pos.x + (WIDTH/2) >= pipe.x + (this.game.pipes.width/2) && pipe !== this.currentPipe) {
 			this.game.scoreboard.addScore();
 			this.currentPipe = pipe;
 		}
@@ -1038,16 +1040,16 @@ class Player {
 	}
 }
 
-class Game_Sounds {
+class GameSounds {
 	constructor (el, game) {
         this.el = el;
 		this.game = game;
-		this.channel_max = 6;	// number of channels 
-		this.c = 0;				// number of the next free channel 
-		this.audiochannels = new Array(); 
-		for (var a=0; a < this.channel_max; a++) {						// prepare the channels
-			this.audiochannels[a] = new Array();
-			this.audiochannels[a]['channel'] = new Audio();				// expected end time for this channel
+		this.channelMax = 6;		// Channel Size
+		this.c = 0;					// Index of next free channel 
+		this.audiochannels = []; 
+		for (var a=0; a < this.channelMax; a++) {	// Initial prep for channels
+			this.audiochannels[a] = [];
+			this.audiochannels[a].channel = new Audio();
 		}
 		this.mute = false;
 		this.nightmareTheme = new Audio();
@@ -1059,11 +1061,11 @@ class Game_Sounds {
 
 	playSound(s) { 
 		if(!this.mute) {
-			this.audiochannels[this.c]['channel'].src = document.getElementById(s).src;
-			this.audiochannels[this.c]['channel'].load();
-			this.audiochannels[this.c]['channel'].play(); 
-			this.c = this.c + 1;	// increment to the next free channel 
-			if (this.c > this.channel_max-1) { // loop back to channel zero when max is reached 
+			this.audiochannels[this.c].channel.src = document.getElementById(s).src;
+			this.audiochannels[this.c].channel.load();
+			this.audiochannels[this.c].channel.play(); 
+			this.c = this.c + 1;				// Incrementing to next free channel 
+			if (this.c > this.channelMax-1) { 	// Return to chan zero if max is done
 				this.c = 0;
 			}	
 		}
