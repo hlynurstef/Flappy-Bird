@@ -96,7 +96,9 @@ class Pipes {
 			for (var i = 0; i < this.pos.length; i++) {
 				if (this.pos[i].x < -this.width) {
 					this.pos[i].x = this.pos[(i+2)%3].x + this.spacing;
-					this.pos[i].yOffset = this.getHeight();
+					var height = this.getHeight();
+					this.pos[i].yOffset = height;
+					this.pos[i].yStart = height;
 					this.el[i].css('top', this.pos[i].yOffset + 'em');
 					break;
 				}
@@ -116,8 +118,7 @@ class Pipes {
 		}
 
 		for (var i = 0; i < this.pos.length; i++) {
-			this.el[i].css('transform', 'translateZ(0) translate(' + this.pos[i].x + 'em, ' +  this.pos[i].y + 'em)');
-			this.el[i].css('top', this.pos[i].yOffset + 'em');
+			this.el[i].css('transform', 'translateZ(0) translate(' + this.pos[i].x + 'em, ' +  (this.pos[i].yOffset-this.pos[i].yStart) +  'em)');
 			
 		}
 	}
