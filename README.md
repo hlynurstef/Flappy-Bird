@@ -39,3 +39,4 @@ grunt serve
 * Press C on your keyboard to see the collision detection in action!
 * Press M on your keyboard to mute audio!
 * Nightmare mode!
+* Medals for points over 10, 20, 30 & 40
